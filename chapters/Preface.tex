@@ -1,0 +1,75 @@
+%%==================================%%
+%%             引    言             %%
+%%==================================%%
+\introduction
+
+\section*{声明}
+为了帮助研究生熟悉毕业论文{\LaTeX{}}模板的使用方法，我们撰写了这份说明文字。本文所采用的{\LaTeX{}}模版的1.0版由海南师范大学数学与统计学院的某位人员(谁能告诉我这位开创者的姓名?)制作，目前是~2.x~版, 由信息科学技术学院的张鸿燕老师与2019级的本科生陈潇合作完成，数学与统计学院的2019级学生冯志强增补了算法排版环境，滴滴研究院的王子昊工程师协助改进了章节编号模式自动选择的可控参数方案，xxxxxx 做了校对。
+
+考虑到到操作系统的多样性以及编码格式的多样性，本模板立足于跨操作系统平台的{\LaTeX{}}语言以及UTF-8编码格式。考虑到格式控制的方便程度，本模板充分利用了程序设计的基本思想与做法，基础信息部分只需填空即可完成填写。数学公式的排版，请充分使用{\LaTeX{}}命令设计宏定义，注意接口规范与实现细节。通用的接口利于文档移植与修改，可以尽量避免不必要的重复劳动。
+
+\section*{下载与使用}
+
+本模板目前是第~2.0~版，正式确定后将在海南师范大学校内公开发布, 也会在Github与Gitee上发布，这样下载会方便。
+在使用时，强烈推荐您将毕业论文的内容按照模块结构分开存放于chapters文件夹中，这样能极大地提升您写作时的效率。需要注意的是，
+\begin{itemize}
+\item 确保所有文件使用UTF-8编码。如果你采用的是TeXMaker或TeXStudio的写作环境, 会自动按照UTF-8编码格式存储;
+	如果你用的是老旧的CTeX+WinEdit，默认的可能是GBxxx编码格式, 不过WinEdit也可以通过“另存为” 来选择UTF-8编码
+	格式。Windows操作系统下可以使用记事本对文件进行转码，当然TexStudio等其他工具可行的工具也可以用来转码；
+\item 编译时需要选择XeLaTeX引擎。
+\end{itemize}
+
+\subsection*{\LaTeX{}的下载安装}
+推荐您安装TexLive，对于Windows操作系统，可以通过众多镜像站得到TexLive。例如，通过清华大学开源软件镜像站下载TexLive2021的URL为\url{https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive2021-20210325.iso}。除此之外，您可以在\url{http://www.ctan.org/mirrors/}找到更多的镜像站点。下载完成之后，您可以通过虚拟光驱的方式或解压缩的方式打开.iso镜像文件，运行install-tl-windows.bat文件即可。需要注意的是，您的用户名与安装路径不能包含中文字符，否则在安装过程中很有可能报错。
+
+如果您是Linux操作系统，则可以利用终端(Terminal)通过命令安装TexLive。例如对于GNU Debian/Ubuntu系列的操作系统, 在终端使用如下命令即可:
+\begin{lstlisting}[frame=shadowbox]
+	$ sudo apt-get install texlive-full
+\end{lstlisting}
+如果您在使用Linux操作系统，我相信这种简单的安装程序已经难不倒您，故不再赘述。需要注意的是，您需要手动安装所需的字体，字体包已经在模板文件包font文件夹里。
+
+\subsection*{编辑器的选择}
+\LaTeX 的源文件是一个或多个文本文件，这意味着可以使用最为简单的文本编辑器来撰写论文。但是和许多编程语言类似，使用一款带有语法高亮、命令补全等功能的文本编辑器能够大大提升协作效率。我们推荐您使用专用的TexMaker或者TexStudio进行写作。在Linux操作系统上，安装是很容易的。对于GNU Debian/Ubuntu系列的操作系统, 在终端使用如下命令即可:
+\begin{lstlisting}[frame=shadowbox]
+	$ sudo apt-get install texmaker
+\end{lstlisting}
+或者是:
+\begin{lstlisting}[frame=shadowbox]
+	$ sudo apt-get install texstudio
+\end{lstlisting}
+你需要注意一下安装的顺序：先装TeXLive, 再装TeXMaker。按照先后顺序组合一次完成也是可以的。对于GNU Debian/Ubuntu系列的操作系统, 在终端使用命令
+\begin{lstlisting}[frame=shadowbox]
+	$ sudo apt-get install texlive-full texmaker
+\end{lstlisting}
+或
+\begin{lstlisting}[frame=shadowbox]
+	$ sudo apt-get install texlive-full texstudio
+\end{lstlisting}
+就可以了。如果是Red Hat系列的Linux操作系统，把~\verb|apt-get|~换成~\verb|yum|~或~\verb|dnf|~即可。
+其他的发行版，请使用相应的包管理命令。
+
+\newpage
+
+\section*{模板代码下载与问题反馈}
+
+本模版发布于 Gitee: \url{https://gitee.com/jitianxu/hainnu-thesis}。欢迎你在写作学位论文时引用本模板的下载链接，相应的BibTeX文件数据库条目是:
+\begin{verbatim}
+@online{HainnuThesis,
+	title={海南师范大学硕博学位论文LaTeX模板},
+	author={张鸿燕 and 陈潇},
+	year = {2022},
+	url = {https://gitee.com/jitianxu/hainnu-thesis},
+	urldate={Available on 2022-02-21},	
+}
+\end{verbatim}
+
+{\zihao{5}由于设计者的水平有限，错误之处难免，欢迎提供反馈意见！}
+
+享受使用{\LaTeX{}}带来的便利与乐趣吧！祝你旅途愉快！
+
+\begin{flushright}
+	张鸿燕，陈潇\\
+	海南师范大学信息科学技术学院\\
+	2022年2月21日\\
+	联系邮箱: cliffigor@foxmail.com, hongyan@hainnu.edu.cn
+\end{flushright}

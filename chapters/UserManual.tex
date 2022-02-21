@@ -1,0 +1,495 @@
+\chapter{模板使用指南}
+
+\section{模板与\LaTeX{}}
+使用此模板前，您应该首先具备基本的{\LaTeX{}}知识，如果您刚刚接触{\LaTeX{}}，建议您先学习相关教程。
+建议您去网站~\url{www.latexstudio.net}~逛一逛。如果想下载关于\LaTeX{}的书籍，
+不妨去网站~\url{www.book4you.org}~看看。
+
+\subsection{基本使用}
+对于最基础的使用，您需要更改main.tex文件中的个人信息部分，这部分定义了文档生成后的姓名、标题等。之后您只需要更改section文件夹下的各文件即可，我们推荐您只修改main.tex文件中的个人信息部分以及正文部分中的内容，调换命令的顺序也可能会导致意料之外的事情发生。
+
+\subsection{模板的新命令}
+为了方便起见，本模板增加了一些新命令，您也可以在Settings文件夹下的UserTextDef、UserMathDef以及UserAlgrCode文件中创建属于您自己的全新命令。使用简短的命令有助于提高文档协作效率,这背后的逻辑其实就是你所学的编程思想——把重复动作包装成小函数以便重用，这是计算思维的标准内容。
+
+\subsection{参考文献数据库文件的制定}
+在{\LaTeX{}}排版系统中，可以使用BibTex文件自动生成参考文献。BibTeX文件是包含参考文献信息的数据库条目。BibTeX文件可以手动制作，也可以借助网络环境下载所需的文献引用信息条码。您可以从各类学术搜索网站上选择引用至BibTex文件，随后将其中的内容添加至BibTex文件夹下的某个bib文件下即可。图~\ref{ref-baidu-academic}~给出了从百度学术网页下载BibTeX文件的方法。您可以通过不同文件的存放对您的参考文献进行分类。需要特别提醒你的要点是: 网上下载的BibTeX文件或数据库条目的信息不一定完整或准确，自动生成的索引名称也不一定好用好记好区分, 你需要自己做必要的增补或修改, 图~\ref{ref-infor-not-complete}~给出了两个典型的案例: 图~\ref{ref-ieee}~对应的是从IEEE Xplore文献网站下载BibTeX文件的情形;图~\ref{ref-elsevier}~展示的是从Elsevier期刊网站下载BibTeX文件的情形。图~\ref{ref-baidu-academic}~生成的信息也是不完整的，你看到的那个GB/T 7714 对应的文献信息也是不完整的。我们建议你将每条文献对应的相关内容一次性做好，免得以后遗忘或错漏。磨刀不误砍柴工，切记！
+\begin{figure}[hp]
+	\centering
+	\includegraphics[height=4cm,width=10cm,trim=30 20 40 50,clip]{RefBaiduAcad}
+	\caption{百度学术选择导出BibTex文件}
+	\label{ref-baidu-academic}
+\end{figure}
+
+\begin{figure}[hp]
+\centering
+\subfigure[IEEE官网下载BibTeX文件]{
+\includegraphics[width=8cm,trim=50 50 50 50,clip]{RefIEEE.png} \label{ref-ieee}
+} 
+\subfigure[Elsevier期刊官网选择导出BibTeX文件]{
+\includegraphics[width=8cm,trim=50 50 50 50,clip]{figures/RefElsevier.png} \label{ref-elsevier}
+}
+\caption{期刊网站上下载BibTeX文件: 信息通常不完整，需要自己补全}
+\label{ref-infor-not-complete}
+\end{figure}
+
+\section{封面选择与专业/学术型学位}
+
+专业型学位(例如电子信息专业硕士)与学术型学位(例如网络空间安全学术硕士)所采用的封面并不相同，你需要自己选择，
+这通过文档类型参数profesdegree与academdegree进行控制。
+\begin{itemize}
+\item 专业型学位，采用的设置如下:
+	\begin{itemize}
+	\item 理工大类请看profesdegree参数:\\
+	  \verb|\documentclass[profesdegree,chinesetitlenum]{hainnuthesis}|
+	\item 人文社科请看profesdegree参数:\\
+	 \verb|\documentclass[profesdegree,arabictitlenum]{hainnuthesis}|
+	\end{itemize} 
+\item 学术型学位，采用的设置如下:
+	\begin{itemize}
+	\item 理工大类请看academdegree参数:\\
+	 \verb|\documentclass[academdegree,chinesetitlenum]{hainnuthesis}|
+	\item 人文社科请看academdegree参数:\\
+	 \verb|\documentclass[academdegree,arabictitlenum]{hainnuthesis}|
+	\end{itemize} 
+\end{itemize}
+
+
+\section{章节编号差异与风格选择}
+
+\subsection{理工科类专业章节编号}
+
+理工科类专业文档的编号使用阿拉伯数字的方式居多，目录层级可能是: 
+\begin{itemize}
+\item 第~1~章
+\item \quad 第~1~节
+\item \qquad 第~1.1~小节
+\end{itemize}
+之类的风格。
+
+
+\subsection{人文与社会科学类专业章节编号}
+
+人文与社会科学类专业文档的编号使用汉字的方式居多，目录层级可能是: 
+\begin{itemize}
+\item 第一章
+\item \quad 第一节
+\item \qquad 第一小节
+\end{itemize}
+之类的风格, 或者是: 一、......；(一）、......;1、......之类的风格。
+
+\subsection{章节编号与模板参数设定}
+
+理工科与人文社科类专业有不同的章节编号传统，为了适应这个特点，在模板的文档类型中有一个参数项可以设定。在main.tex文档中的开头处，你可以找到相应的设定方法。
+\begin{itemize}
+\item 人文社科类编号, 可以按照如下方式设定:
+     \begin{itemize}
+     \item 专业型学位请看chinesetitlenum参数: \\
+     \verb|\documentclass[profesdegree,chinesetitlenum]{hainnuthesis}|
+     \item 学术型学位请看chinesetitlenum参数: \\
+     \verb|\documentclass[academdegree,chinesetitlenum]{hainnuthesis}|
+     \end{itemize}
+\item 理工科科类编号, 可以按照如下方式设定:
+     \begin{itemize}
+     \item 专业型学位,请看arabictitlenum参数: \\
+     \verb|\documentclass[arabictitlenum,profesdegree]{hainnuthesis}|
+     \item 学术型学位,请看arabictitlenum参数:\\
+      \verb|\documentclass[arabictitlenum,academdegree]{hainnuthesis}|
+     \end{itemize}
+\end{itemize}
+这个采用参数arabictitlenum与chinesetitlenum控制章节编号风格的解决方案是由滴滴研
+究院的工程师王子昊实现的，感谢他的帮助！
+
+如果你对编号细节不满意，可以手动修改格式控制文件\verb|hainnuthesis.cls|中相应的地方，其它地方不要随意改动，免得发生错误自己难以控制。
+
+
+
+
+\section{数学环境实例}
+
+\subsection{行内公式与行间公式}
+
+Newton第二定律，高中生喜欢写$f=ma$, 而大学生则经常写$\displaystyle{f=m\fracode{v}{t}}$。定积分
+$\displaystyle{\int^b_a g(x)\dif x}$可以用$G(b)-G(a)$来计算，其中$g(x) = \fracode{G(x)}{x}$。
+
+你喜欢线性代数吗？我写个线性方程给你看看
+\begin{equation}
+\mat{A} \vec{x}= \vec{b}, \quad \mat{A}\in \ES{R}{n}{n}, \vec{x}\in \ES{R}{n}{1}
+\end{equation}
+特殊地，可以是
+\begin{equation}
+\mat{A} = \begin{bmatrix}
+1 & 2 \\
+2 & 3 
+\end{bmatrix},\quad
+\vec{x}=\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}, \quad
+\vec{b} =\begin{bmatrix}
+1 \\ 2
+\end{bmatrix}
+\end{equation}
+
+\subsection{公式对齐}
+
+这里有几个等式
+\begin{equation}
+\begin{split}
+\int^b_a f(x)\dif x 
+& = \int^b_a f(t)\dif t \\
+& = \int^c_a f(x)\dif x + \int^b_c f(x)\dif x, \quad c\in [a,b] 
+\end{split}
+\end{equation}
+还有别的等式
+\begin{align}
+\sum^n_{i=0} x^i 
+&= 1 + x + \cdots + x^n \\
+&= 1 + x(1 + x + \cdots + x^{n-1}) \\
+& = 1 + x \sum^{n-1}_{j=0} x^j
+\end{align}
+
+概率公式: 对于$X\sim \mathcal{N}(\mu, \sigma^2)$, 可以得到
+\begin{align}
+\Prob(a \le X \le b) 
+&=\Prob\left(\frac{a-\mu}{\sigma}\le \frac{X-\mu}{\sigma}\le
+  \frac{b-\mu}{\sigma} \right) \\
+&= \int^{\frac{b-\mu}{\sigma}}_{\frac{a-\mu}{\sigma}} \frac{1}{\sqrt{2\pi}}\me^{-x^2/2}\dif x \\
+& = \Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right) 
+\end{align}
+
+
+\subsection{特殊环境}
+
+
+这里有一个数学定义
+\begin{definition}
+对于函数$f: \Real \to \Real$, 如果它在点$x_0$处连续，那么它在该点处的导数规定为
+\begin{equation}
+f'(x_0) = \lim_{\Delta x\to 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}
+\end{equation}
+\end{definition}
+
+\begin{definition}[内积]
+$\ES{R}{n}{1}$上的内积规定为
+\begin{equation}
+\braket{\vec{a}}{\vec{b}} = \sum^n_{i=1} a_ib_i, \quad \forall \vec{a}, \vec{b}\in \ES{R}{n}{1}
+\end{equation}
+\end{definition}
+
+写一个数学定理看看
+\begin{theorem}
+设直角三角形的直角边长分别为$a$与$b$, 斜边长为$c$, 那么
+\begin{equation}
+a^2 + b^2 = c^2
+\end{equation}
+\end{theorem}
+
+
+写一个命题看看
+\begin{proposition}
+对于$\vec{a},\vec{b}\in \ES{R}{n}{1}$, Cauchy-Schwartz不等式成立
+\begin{equation}
+\abs{\braket{\vec{a}}{\vec{b}}}\le \norm{\vec{a}}\cdot \norm{\vec{b}}
+\end{equation}
+\end{proposition}
+
+
+
+写一个例子看看
+
+\begin{example}
+定积分的可加性:
+$$
+\int^2_0 \sin \pi x \dif x = \int^1_0 \sin(\pi x) \dif x + \int^2_1 \sin(\pi x) \dif x
+$$
+\end{example}
+
+\begin{example} 导数运算
+\begin{align}
+\fracode{[f(x)g(x)]}{x} 
+&= f(x)\cdot \frac{g(x)}{x} + \fracode{f(x)}{x}\cdot g(x) \\
+\fracpde{(uv)}{x}& = \fracpde{u}{x}v + u\fracpde{v}{x}\\
+\nabla^2u(x,y,z)& = \lap{u}{x} + \lap{u}{y} +\lap{u}{z}
+\end{align}
+\end{example}
+
+\begin{lemma} 如果对于任意的$f\in C[a,b]$, 等式
+$$
+\int^b_a g(x) f(x)\dif x = 0
+$$
+成立，那么$g(x)\equiv 0$.
+\end{lemma}
+
+\begin{property}[反对称性]
+对于$\vec{a},\vec{b}\in \ES{R}{2}{1}$, 可以得到
+$$
+\det(\vec{a},\vec{b}) = - \det(\vec{b},\vec{a})
+$$
+\end{property}
+
+\begin{property}[可加性]
+对于$\vec{a},\vec{b},\vec{c}\in \ES{R}{2}{1}$, 可以得到
+$$
+\det(\vec{a}+\vec{b},\vec{c}) = \det(\vec{a},\vec{c}) +\det(\vec{b},\vec{c})
+$$
+\end{property}
+
+\begin{property}[多重线性]
+对于$\vec{a}_1,\vec{a}_2\in \ES{R}{2}{1}$以及$\lambda_1, \lambda_2\in\Real$, 可以得到
+$$
+\det(\lambda_1\vec{a}_1,\lambda_2\vec{a}_2) = \lambda_1\lambda_2 \det(\vec{a}_1,\vec{a}_2)
+$$
+\end{property}
+
+
+\begin{corollary}
+对于$\vec{a},\vec{b}\in \ES{R}{n}{1}$, 有
+$$
+\norm{\vec{a}+\vec{b}}^2 + \norm{\vec{a}-\vec{b}}^2 =2(\norm{\vec{a}}^2 +\norm{\vec{b}}^2)
+$$
+\end{corollary}
+
+
+
+\section{流程图绘制}
+\subsection{使用Tikz绘制流程图}
+图~\ref{flowchart-tikz}是使用Tikz绘制的流程图。
+\usetikzlibrary{shapes.geometric,arrows}
+\usetikzlibrary{fit}
+\usetikzlibrary{backgrounds}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=red!30]
+\tikzstyle{io}        = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, inner xsep = -15pt, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process}   = [rectangle, minimum width=3cm, minimum height=1cm, inner ysep=0, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision}  = [diamond,shape aspect=2.5, minimum width=3cm, minimum height=1cm, inner xsep=0,text centered, draw=black, fill=green!30]
+\tikzstyle{arrow}     = [thick,->,>=stealth]
+
+\begin{figure}[htp]
+	\centering
+	\begin{tikzpicture}[node distance=2cm]
+		% adding nodes
+		\node (start) [startstop] {Start};
+		\node (io1)   [io, below of=start] {Lamp doesn't work};
+		\node (dec1)  [decision, below of=io1] {Lamp plugged in?};
+		\node (dec2)  [decision, below of=dec1, yshift=-0.3cm] {Bulb burned out?};
+		
+		\node (pro2) [process, below of=dec2] {Repair lamp};
+		\node (stop) [startstop, below of=pro2] {Stop};
+		
+		\node (pro3) [process, left of=dec1, xshift=-2.5cm] {Plug in lamp};
+		\node (pro4) [process, right of=dec2, xshift=2.5cm] {Replace bulb};
+		
+		% adding frame
+		\begin{scope}[on background layer,label distance=1cm] % if you prefer pin, pin distance=1cm, and change label below to pin
+			\node [draw=black!50,dashed,thick,fill=black!10,fit=(dec1) (dec2),label={[draw=red,fill=black!20,inner sep=0,anchor=south west]north east:{I am a node, too!}}] {};
+		\end{scope}
+		
+		% adding arrows
+		\draw [arrow] (start) -- (io1);
+		\draw [arrow] (io1) -- (dec1);
+		\draw [arrow] (dec1) -- node[anchor=east] {yes} (dec2);
+		\draw [arrow] (dec2) -- node[anchor=east] {no } (pro2);
+		
+		\draw [arrow] (dec1) -- node[anchor=south] {no }(pro3);
+		\draw [arrow] (dec2) -- node[anchor=south] {yes}(pro4);
+		
+		\draw [arrow] (pro4) |- (stop);
+		\draw [arrow] (pro3) |- (stop);
+		
+		\draw [arrow] (pro2) -- (stop);
+	\end{tikzpicture}
+	\caption{使用Tikz绘制流程图}\label{flowchart-tikz}
+\end{figure}
+
+\subsection{插入其他软件绘制的流程图}
+图~\ref{flowchart}~是使用Visio绘制后保存为jpg格式的流程图，使用正常插入图片的方法即可。
+\begin{figure}[htp]			%需要图片在固定位置出现时，将h改为H
+	\centering
+	\includegraphics[width=6cm]{flowchart}
+	\caption{使用Visio绘制的流程图} \label{flowchart}
+\end{figure}
+
+\subsection{Tikz绘制思维导图}
+图~\ref{mindmap}是Tikz绘制的思维导图，关于Tikz更多信息可以查看\url{https://www.cnblogs.com/tsingke/p/6649800.html}
+\begin{figure}[htp]
+	\centering
+	\begin{tikzpicture}[root concept/.append style = {concept color=blue,font = \color{white}\Large\bfseries },mindmap,scale=0.9]
+		\tikzstyle{every node}=[font=\small,scale=0.9]
+		\node[concept]{WebGIS}[clockwise from=0]
+		child[grow=60,concept color = orange,font = \color{white}\bfseries \large ]{
+			node[concept]{前端}		%这里是第二级节点
+			[clockwise from  = 135]
+			child[font = \color{white}\bfseries]{node[concept]{HTML}}
+			child[font = \color{white}\bfseries]{node[concept]{CSS}}
+			child[font = \color{white}\bfseries]{node[concept]{Vue}}
+			child[font = \color{white}\bfseries]{node[concept]{Mapbox、Openlayers}}
+		}
+		child[grow=-60,concept color =   green!50!black,font=\color{white}\bfseries\kaishu\large]{
+			node[concept]{后端} 
+			[clockwise from = 45] 
+			child[font = \color{white}\bfseries]{node[concept]{ArcGIS  API for Java}}
+			child[font = \color{white}\bfseries]{node[concept]{ 高德 API }}
+			child[font = \color{white}\bfseries]{node[concept]{Java Script}}
+			child[font = \color{white}\bfseries]{node[concept]{源数据的获取-如Python爬虫}}
+		};
+	\end{tikzpicture}
+	\caption{WebGIS 技术思维导图}\label{mindmap}
+\end{figure}
+
+\section{表格示例}
+
+\begin{table}[htp]
+	\caption{一个简单的表格}\label{tab1}
+	\centering
+	\begin{tabular}{|l|c|c|}
+		\hline
+		功能          &WEB         &APP         \\ \hline
+		注册          &$\surd$     &$\surd$     \\ \hline
+		登录          &$\surd$     &$\surd$     \\ \hline
+		推送          &$\times$    &$\surd$     \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[htp]
+	\caption{自定义表格}\label{tab2}
+	\centering
+	\begin{tabular*}{0.75\textwidth}{@{\extracolsep{\fill}}lcc}
+		\toprule
+		功能          &WEB         &APP         \\
+		\midrule
+		注册          &$\surd$     &$\surd$     \\
+		登录          &$\surd$     &$\surd$     \\
+		推送          &$\times$    &$\surd$     \\
+		\bottomrule
+	\end{tabular*}
+\end{table}
+
+
+\begin{table}[htp]
+\centering
+\caption{绘制斜线表头}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\diagbox{节次}{\rotatebox{-45}{课程}}{星期} & 星期一 & 星期二 & 星期三 & 星期四 & 星期五 & 星期六 \\
+\hline
+上午 1-2 &  经济学  &  量子力学  &  微波原理 &  编译原理 & 计数组合学 & 学术讲座 \\  
+\hline
+上午 3-4 &  微波原理 & 学术写作  &  计数组合学& 经济学   & 民法典专题  & 学术讲座       \\ 
+\hline 
+\end{tabular}
+\end{table}
+
+
+去网站\url{https://www.tablesgenerator.com/latex_tables}看看，你肯定会喜欢的!更改好表格的数据后，点击Generate即可生成\LaTeX 代码！
+
+\section{代码示例}
+
+\subsection{代码片段}
+这里有几行C程序代码, 虽然没加方框，但是添加了行号。
+\begin{lstlisting}[language=C]
+	typedef double (*Ptr2Fun)(double); /*创建新数据类型: 函数指针*/
+	Ptr2Fun f; /* 声明函数指针类型的变量  */
+	f = cos;   /* 给变量赋值 */
+	Ptr2Fun g = sin; /* 定义函数指针型变量, 存在内存分配的动作 */
+	const double pi = acos(-1.0); //  定义常数 pi = 3.1415926... 
+	double value_1 = g(pi/2); // value_1 = sin(pi/2) = 1.0  
+	double value_2 = g(pi/4); // value_2 = sin(pi/4) = 0.707 ... 
+\end{lstlisting}
+
+\subsection{完整的小程序}
+采用``分割---近似---求和"的方法计算定积分的数值
+$$
+\int^b_a f(x) \mathrm{d} x \approx \sum^{n-1}_{i=0} f(x_i)\Delta x, \quad x_i = a+i\cdot \Delta x, \quad \Delta x = \frac{b-a}{n}
+$$
+\begin{lstlisting}[language=C,frame=shadowbox,title={Integral-1.c}]
+	double Integral(Ptr2Fun f, double a, double b, unsigned n)
+	{
+		double sum = 0.0, delta_x = (b-a)/n;
+		double x_i = 0.0;
+		for(int i = 0; i < n; i++){
+			x_i = a + i*delta_x;
+			sum += f(x_i)*delta_x;
+		}
+		return sum; 				
+	}
+\end{lstlisting}
+
+\subsection{使用{\LaTeX{}}命令给代码写注释}
+
+\begin{lstlisting}[language=C,frame=shadowbox,title={Integral-2.c}]
+    /* 计算定积分 (*@$\displaystyle \int^b_a f(x)\mathrm{d} x \approx \sum^{n-1}_{i=0} f(x_i)\Delta x_i $@*) */
+	double Integral(Ptr2Fun f, double a, double b, unsigned n)
+	{
+		double sum = 0.0, delta_x = (b-a)/n; 
+		double x_i = 0.0;
+		for(int i = 0; i < n; i++){
+			x_i = a + i*delta_x;   /* (*@$ x_i = a + i\cdot \Delta x $@*) */
+			sum += f(x_i)*delta_x; /* (*@$ S \leftarrow S + f(x_i)\cdot \Delta x $@*) */
+		}
+		return sum; 				
+	}
+\end{lstlisting}
+
+
+\subsection{算法与伪代码示例}
+
+算法~\ref{alg-1}~对于xxx来说是关键，其显著的特点是xxx, 
+
+\begin{algorithm}[h]
+	\caption{如何使用while和if} \label{alg-1}
+	\begin{algorithmic}[1]  %每行显示行号
+		\Require 这段代码
+		\Ensure 使用while和if的方法
+		\Function{函数名}{参数列表}
+		\While{True}
+		\If{临界条件}
+		\State 退出循环
+		\EndIf
+		\State 某个变量  $\gets$ 某个变量
+		\EndWhile
+		\State\Return 某个返回值
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+算法~\ref{alg-2}~对于xxx来说是关键，其显著的特点是xxx, 
+
+\begin{breakablealgorithm}
+	\caption{如何使用for和do-while} \label{alg-2}
+	\begin{algorithmic}[1]  %每行显示行号
+		\Require 这段代码
+		\Ensure 使用for和do-while的方法
+		\Function{函数名}{参数列表}
+		\Repeat
+		\State 学习\LaTeX
+		\Until{Alive}
+		\For{$ i = 1, 2, ..., 7 $}
+		\State echo "今天是周\$i\ "
+		\EndFor
+		\EndFunction
+	\end{algorithmic}
+\end{breakablealgorithm}
+
+
+\section{参考文献使用示例}
+
+对于论文的写作而言，文献的引用是非常重要的。言之有理，言之有据，这是基本的要求。文献引用，需要使用命令\verb|\cite|与文献条码标签。在中国大陆地区，有参考文献的国家标准，即GB/T 7714, 请你注意这个标准。本模板采用的参考文献格式复合这个标准，是自动利用BibTeX文件自动生成的, 这得感谢开发gbt7714宏包的作者与维护者们! 这里有几种不同类型的参考文献:
+
+\begin{itemize}
+\item[\ding{172}] 期刊论文, 例如\cite{XmDeng2007,Brown1984,ZHY2017RS,ZHY2012manifold}以及\cite{Wing2006CT}
+\item[\ding{173}] 会议论文, 例如\cite{Geyer1999,Branislav2004}
+\item[\ding{174}] 专利, 例如\cite{LongMA2015P}
+\item[\ding{175}] 书籍, 例如\cite{CDIO2014,ZHY2022}
+\item[\ding{176}] 在线资源, 例如\cite{SFMedu,OpenMVS,HainnuThesis}
+\item[\ding{177}] 技术报告，例如\cite{Sussman2005}
+\item[\ding{178}] 学位论文，例如\cite{ZHY2002,Xue2006,lzj-zhy-MS-thesis-2018,zls-zhy-MS-thesis-2016,zhy-2011-disertation}
+
+
+脚注一\footnote{康宁. 中国发展研究基金会丛书：《和谐社会的治理之道――领导者的讲述》[M].}，
+脚注二\footnote{康宁. 中国发展研究基金会丛书：《和谐社会的治理之道――领导者的讲述》[M].}。
+脚注三\footnote{康宁. 中国发展研究基金会丛书：《和谐社会的治理之道――领导者的讲述》[M].}。
+
+引用参考文献一\cite{gao1987}，引用参考文献二\cite{zhang1989}。
+
+引用参考文献一和二\cite{gao1987,zhang1989}。
+
+
+\end{itemize}
