@@ -245,7 +245,7 @@ AutoFakeBold=1.5
                 \makebox[5\ccwd][s]{分类号：}   & \CJKunderline{\makebox[6\ccwd][c]{\hainnu@classifier}} & \makebox[6\ccwd][s]{密级：} & \CJKunderline{\makebox[8\ccwd][c]{\hainnu@secretlevel}}
         \end{tabular}}
         \par\vspace{2cm}
-        \includegraphics[width=.55\textwidth]{logo.jpg}
+        \includegraphics[width=.55\textwidth]{logo.png}
         \par\vspace{.6cm}
         {\zihao{0}\heiti {\hainnu@degreelevel}学位论文}
         \par\vspace{1.2cm}
