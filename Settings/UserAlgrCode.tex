@@ -1,0 +1,71 @@
+\usepackage{listings}
+
+\lstset{
+    basicstyle=\ttfamily,   %使用默认的等宽，而非texlive调用的中文字体
+    escapeinside=``,        %使用 “逃逸” 字串来显示中文
+    escapeinside={(*@}{@*)},%在代码中使用LaTeX
+    tabsize=4, 
+	numbers=left,
+	numberstyle=\tiny,
+	commentstyle=\ttfamily\color{red!80},
+%	frame=shadowbox,
+	rulesepcolor=\color{red!20!green!20!blue!20},          
+	flexiblecolumns=true, %
+	breaklines=true, %对过长的代码自动换行
+	breakautoindent=true, %
+	breakindent=4em, %
+    keywordstyle=\color{blue!90}\bfseries,         %代码关键字的颜色为蓝色, 粗体
+%    backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
+%    keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+%    numberstyle=\footnotesize\color{darkgray},           % 设定行号格式
+%    commentstyle=\it\color[RGB]{0,96,96},                % 设置代码注释的格式
+    stringstyle=\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+    showstringspaces=false,                              % 不显示字符串中的空格
+%	language=c++,                                        % 设置语言
+}
+
+
+
+%% ++++++++++++++++++++++++++++++++++++++++++++++++
+% Algorithm
+%% ++++++++++++++++++++++++++++++++++++++++++++++++
+
+%伪代码
+\usepackage{algorithm}         
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{float}
+
+\renewcommand{\algorithmicrequire}{\textbf{输入:}}
+\renewcommand{\algorithmicensure}{\textbf{输出:}}
+
+% 添加do-while语句
+\renewcommand{\algorithmicrepeat}{\textbf{do}}
+\renewcommand{\algorithmicuntil}{\textbf{while}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 伪代码分页
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\renewcommand{\ALG@name}{算法}
+\newenvironment{breakablealgorithm}
+{% \begin{breakablealgorithm}
+	\begin{center}
+		\refstepcounter{algorithm}% New algorithm
+		%\wuhao 五号字大小
+		\setlength{\baselineskip}{15pt}  %定义行间距
+		% \@fs@pre for \@fs@ruled 画线
+		\renewcommand{\caption}[2][\relax]{% Make a new \caption
+			\hrule height.8pt depth0pt \kern0pt
+			{\raggedright\textbf{\ALG@name~\thealgorithm} ##2\par}%
+			\ifx\relax##1\relax % #1 is \relax
+			\addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+			\else % #1 is not \relax
+			\addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+			\fi
+			\kern2pt\hrule\kern2pt
+		}
+	}{% \end{breakablealgorithm}
+		\kern2pt\hrule\relax% \@fs@post for \@fs@ruled 画线
+	\end{center}
+}

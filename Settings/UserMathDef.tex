@@ -1,0 +1,265 @@
+%------------------------------------------------------------
+%    MathDef.tex   你可以修改或设定自己的数学公式环境定义
+%------------------------------------------------------------
+
+\usepackage[electronic]{ifsym}
+\usepackage{indentfirst}
+\usepackage{latexsym}
+
+%%\usepackage{unicode-math}
+%\usepackage{mathpazo}
+%%\usepackage[mathpazo]{flexisym}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+
+\usepackage{amsmath}
+%\usepackage{amssymb}
+\usepackage{amsfonts}
+%\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{pifont}
+%\usepackage{wasysym}
+\usepackage[mathscr]{euscript}
+
+\usepackage[all]{xy}  % 画交换图
+
+
+\newcommand{\op}[1]{\mathcal{#1}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Proj}{\mathbb{P}}
+\newcommand{\field}[1]{\mathbb{#1}}
+\newcommand{\cc}[1]{\overline{#1}}   % complex congugate
+\newcommand{\hc}[1]{{#1}^{\dagger}}  % Hermitian congugate
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Operators
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\Ker}{\mathrm{Ker}}
+\DeclareMathOperator{\Image}{\mathrm{Im}}
+\DeclareMathOperator{\argmin}{\mathrm{argmin}}
+\DeclareMathOperator{\SSE}{\mathrm{SSE}}
+\DeclareMathOperator{\dist}{\mathrm{dist}}
+\DeclareMathOperator*{\union}{\cup}
+\DeclareMathOperator{\polydeg}{\mathrm{deg}}
+\DeclareMathOperator{\lspan}{\mathrm{span}}
+\DeclareMathOperator{\diag}{\mathrm{diag}}
+\DeclareMathOperator{\rank}{\mathrm{rank}}
+\DeclareMathOperator{\trace}{\mathrm{tr}}
+\DeclareMathOperator{\Dim}{\mathrm{dim}}
+\DeclareMathOperator{\Dom}{\mathrm{Dom}}
+\DeclareMathOperator{\Range}{\mathrm{Range}}
+\DeclareMathOperator{\Null}{\mathrm{Null}}
+\DeclareMathOperator{\FFT}{\mathrm{FFT}}
+\DeclareMathOperator{\DFT}{\mathrm{DFT}}    % Discrete Fourier Transformation
+\DeclareMathOperator{\id}{\mathbbm{1}}
+\DeclareMathOperator{\dif}{\mathrm{d}}
+\DeclareMathOperator{\Hom}{\mathrm{Hom}}
+\DeclareMathOperator{\sign}{\mathrm{sign}}
+\DeclareMathOperator{\Ann}{\mathrm{Ann}}
+\DeclareMathOperator{\dB}{\mathrm{dB}}
+\DeclareMathOperator{\GF}{\mathbb{GF}} % Galois Filed
+\DeclareMathOperator{\sinc}{\mathrm{sinc}}      % sin count function, sinc(x) = sin (\pi x)/(\pi x)
+\DeclareMathOperator{\rect}{\mathrm{rect}}      % regutangular impulse
+\DeclareMathOperator{\erf}{\mathrm{erf}}
+\DeclareMathOperator{\erfc}{\mathrm{erfc}}
+\DeclareMathOperator{\Q}{\mathrm{Q}}
+\DeclareMathOperator{\const}{\mathrm{const}}
+
+\DeclareMathOperator{\vecs}{\mathrm{vecs}}
+\DeclareMathOperator{\Zern}{\mathrm{Z}}
+\DeclareMathOperator{\grad}{\overrightarrow{\mathrm{grad}}}
+\DeclareMathOperator{\dive}{\mathrm{div}}
+\DeclareMathOperator{\curl}{\overrightarrow{\mathrm{rot}}}
+
+\newcommand{\atan}{\mathrm{atan2}}
+
+\newcommand{\mapstset}[2]{\left.{#1}\right|_{#2}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  CV notations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\univset}[1]{\mathscr{#1}} % universal set
+\newcommand{\setclass}[1]{\mathcal{#1}} % set class
+\newcommand{\manifold}[1]{\mathcal{#1}}
+\newcommand{\chart}[1]{\mathscr{#1}}  % coordinate chart in manifold
+\newcommand{\manpt}[1]{\mathrm{#1}}     % point in a manifold
+\newcommand{\vecfield}{\mathscr{X}}
+\newcommand{\TpM}[2]{\mathscr{T}_{#1}(#2)}
+\newcommand{\cTpM}[2]{\mathscr{T}^*_{#1}(#2)}
+\newcommand{\tanspace}[1]{\mathscr{T}(#1)}          % tangent space
+\newcommand{\cotspace}[1]{\mathscr{T}^*(#1)}       % cotangent space
+\newcommand{\tanbundle}[1]{\mpair{#1}{\mathscr{T}(#1)}} % tangent fibre bundle
+\newcommand{\ctanbundle}[1]{\mpair{#1}{\mathscr{T}^*(#1)}} % cotangent fibre bundle
+\newcommand{\Diff}{\mathrm{Diff}} % diffeomorphism
+
+\newcommand{\img}[1]{\mathcal{#1}}      % image frame variable
+\newcommand{\wopt}[1]{\bf{#1}}          % world point  4-vector
+\newcommand{\impt}[1]{\bf{#1}}          % image广。矩阵求导与微分，是计算机视觉、信号处理以及其他很多工程领域都有着广泛的应用。 point  3-vector
+\newcommand{\imli}[1]{\bf{#1}}          % image line   3-vector
+\newcommand{\cam}[1]{\bf{#1}}       % camera projection 3-by-4 matrix
+\newcommand{\IAC}[1]{\tinv{#1}\inv{#1}}
+\newcommand{\conic}[1]{\mathcal{#1}}    % conics
+\DeclareMathOperator{\MOSAIC}{MOSAIC}  % 全景拼接
+\DeclareMathOperator{\GetStrip}{GetStrip} % 图像条带选取
+\newcommand{\strip}[1]{\overline{#1}} % image strip
+\DeclareMathOperator*{\mosaic}{\sqcup}
+\newcommand{\woptl}[1]{\scrut{\mathbf{#1}}{loc}}   %local frame, world coordinate point  4-vector
+\newcommand{\woptg}[1]{\scrut{\mathbf{#1}}{glb}}   %global frame, world coordinate point  4-vector
+\newcommand{\woptsl}[1]{\scrut{\mathfrak{#1}}{loc}}   %local frame, world coordinate point  4-vector
+\newcommand{\woptsg}[1]{\scrut{\mathfrak{#1}}{glb}}   %global frame, world coordinate point  4-vector
+\newcommand{\imsz}[2]{\texttt{#1} \times \texttt{#2}}  % image size
+
+
+
+
+\DeclareMathOperator{\Int}{\mathrm{int}} % interior of a set
+\DeclareMathOperator{\Ext}{\mathrm{ext}} % exterior of a set
+\DeclareMathOperator{\bry}{\partial} % boundary operator
+
+\newcommand{\gso}{\mathrm{g^2o}}
+
+ 
+\DeclareMathOperator{\mtv}{\mathrm{vec}}    % 矩阵按列堆栈生成向量
+\DeclareMathOperator{\smtv}{\mathrm{vecs}}  % 对称矩阵按行生成向量
+\newcommand{\vtm}[1]{\inv{\mtv}(#1)}        % 向量整形生成矩阵
+\newcommand{\vtsm}[1]{\inv{\smtv}(#1)}      % 向量按行生成对称矩阵
+\newcommand{\oplift}[1]{{#1}^\wedge}   % 三维向量提升为三阶反对称矩阵
+\newcommand{\opdown}[1]{{#1}^\lor}     % 三阶反对称矩阵降格为三维向量 
+\newcommand{\vtam}[1]{\scrdm{\left[#1\right]}{\times}}      % 三维向量整形为三阶反对称矩阵
+
+\newcommand{\liebraket}[2]{\left[#1, #2\right]} % Lie括号
+
+%\DeclareMathOperator{\vecm}{vec}                     % 按列向量堆栈(一般矩阵)
+%\DeclareMathOperator{\unvm}{unvec}
+%\DeclareMathOperator{\vecs}{vecs} 
+%\newcommand{\vecmat}[1]{\vecm{\left( {#1} \right)}}
+%\newcommand{\vecsmat}[1]{\vecs{\left( {#1} \right)}}
+%\newcommand{\vecasym}[1]{[#1]_\times}   % antisymmetric matrix from a vector
+%\newcommand{\matTOvec}[1]{\vecm{\left( #1 \right)}}
+%\newcommand{\smatTOvec}[1]{\vecs{\left( #1 \right)}}
+%\newcommand{\vecTOasym}[1]{[#1]_{_\times}}
+
+%\newcommand{\matTOvec}[1]{\vecm{\left( #1 \right)}}
+\newcommand{\smatTOvec}[1]{\vecs{\left( #1 \right)}}
+\newcommand{\vecTOasym}[1]{[#1]_{_\times}}
+
+
+\newcommand{\scrdm}[2]{{#1}_{#2}}
+\newcommand{\scrum}[2]{{#1}^{#2}}
+\newcommand{\scrudm}[3]{{#1}^{#2}_{#3}}
+
+\newcommand{\scrdt}[2]{{#1}_{\mathrm{#2}}}
+\newcommand{\scrut}[2]{{#1}^{\mathrm{#2}}}
+\newcommand{\scrudt}[3]{{#1}^{\mathrm{#2}}_\mathrm{#3}}
+
+
+\renewcommand{\bf}[1]{\mathbf{#1}}
+\newcommand{\hompt}[1]{\bf{#1}}      % homegenous coordinate of a point
+\renewcommand{\vec}[1]{\bm{#1}}      % \bm
+\newcommand{\mat}[1]{\bm{#1}}        % \bm
+\newcommand{\hmat}[1]{\mathbf{#1}}   % homegeneous transform
+
+
+\newcommand{\mean}[1]{\overline{#1}}
+\newcommand{\card}[1]{\left| #1 \right|}
+\newcommand{\mfloor}[1]{ \left\lfloor {#1} \right\rfloor }
+\newcommand{\mpair}[2]{\left({#1}, {#2} \right)}
+\newcommand{\mtrip}[3]{\left({#1}; {#2}, {#3}\right)}
+\newcommand{\pairmap}[2]{\left\langle {#1}, {#2}\right\rangle}
+\newcommand{\triplet}[3]{\left({#1}, {#2}, {#3}\right)}
+\newcommand{\manchart}[3]{\left\langle {#1}, {#2(#1)}, {#3}\right\rangle}
+\newcommand{\tranmap}[3]{\scrudm{#1}{#2}{#3}}
+\newcommand{\seq}[1]{\left\langle {#1} \right\rangle}
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\mi}{\mathrm{i}}
+\newcommand{\mj}{\mathrm{j}}
+\newcommand{\mk}{\mathrm{k}}
+\newcommand{\me}{\mathrm{e}}
+
+\newcommand{\fracode}[2]{\frac{\dif {#1}}{\dif {#2}}}         % ordinary differential operator
+\newcommand{\pdif}[1]{\mathrm{D}_{#1}}
+\newcommand{\fracpde}[2]{\frac{\partial {#1}}{\partial {#2}}} % partial differential operator
+\newcommand{\fracpderow}[2]{\partial {#1}/\partial {#2}}
+\newcommand{\fracoderow}[2]{\dif {#1}/\dif {#2}}
+\newcommand{\fracpdemix}[3]{\frac{\partial^2 {#1}}{\partial {#2} \partial {#3}}}
+\newcommand{\lap}[2]{\frac{\partial^2 {#1}}{\partial {#2}^2}}
+\newcommand{\laprow}[2]{\partial^2 {#1}/\partial {#2}^2}
+\newcommand{\secode}[2]{\frac{\dif^2 {#1}}{\dif {#2}^2}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\setind}[1]{\bf{1}_{#1}}   % set index function
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\absvec}[1]{\left| \bf{#1} \right|}
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1 |}
+\newcommand{\braket}[2]{ \langle #1 |  #2 \rangle}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\normF}[1]{\norm{#1}_{\small{F}}}
+\newcommand{\trsp}[1]{{#1}^{\small{\textsf{T}}}}
+\newcommand{\itrsp}[1]{{#1}^{-\small{\textsf{T}}}}
+\newcommand{\htrsp}[1]{{#1}^{\small{\textsf{H}}}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\ginv}[1]{#1^+}    % Moore-Penrose (general) inverse
+\newcommand{\tinv}[1]{{#1}^{-\small{\textsf{T}}}}
+
+\newcommand{\lhom}[2]{\mathscr{L}(#1;#2)} % 线性同态
+\newcommand{\Grgl}[1]{\mathrm{gl}(#1)}
+\newcommand{\GrGL}[2]{\mathrm{GL}(#1,\mathbb{#2})}
+\newcommand{\GrPGL}[2]{\mathrm{PGL}(#1,\mathbb{#2})}
+\newcommand{\GrGT}[2]{\mathrm{GT}(#1,\mathbb{#2})}
+\newcommand{\GrGA}[2]{\mathrm{GA}(#1,\mathbb{#2})}
+\newcommand{\GrSL}[2]{\mathrm{SL}(#1,\mathbb{#2})}
+\newcommand{\GrO}[2]{\mathrm{O}(#1,\mathbb{#2})}
+\newcommand{\GrSO}[2]{\mathrm{SO}(#1,\mathbb{#2})}
+\newcommand{\GrE}[1]{\mathrm{E}(#1,\mathbb{R})}
+\newcommand{\GrSE}[1]{\mathrm{SE}(#1,\mathbb{R})}
+\newcommand{\GrGS}[1]{\mathrm{GS}(#1,\mathbb{R})}
+\newcommand{\GrSim}[1]{\mathrm{Sim}(#1,\mathbb{R})}
+
+\newcommand{\GrU}[1]{\mathrm{U}(#1)}
+\newcommand{\GrSU}[1]{\mathrm{SU}(#1)}
+\newcommand{\GrSp}[2]{\mathrm{Sp}(#1,\mathbb{#2})}
+
+\DeclareMathOperator{\Ad}{\mathrm{Ad}}      % Lie群元素的伴随表示, Ad(g)
+\DeclareMathOperator{\ad}{\mathrm{ad}}      % Lie群元素的伴随表示, ad(X)
+\newcommand{\lalg}[1]{\mathrm{#1}} % Lie代数 g
+\newcommand{\lalgo}[2]{\mathrm{o}(#1,\mathbb{#2})}    % Lie代数 o(n,R)
+\newcommand{\lalgse}[1]{\mathrm{se}(#1,\mathbb{R})} % Lie代数se(n,R)
+\newcommand{\lalgso}[2]{\mathrm{so}(#1,\mathbb{#2})} % Lie代数so(n,R)
+
+\newcommand{\ES}[3]{\mathbb{#1}^{{#2}\times {#3}}}     % Euclidean space
+\newcommand{\PS}[1]{\Proj^{#1}}       % projective space
+\newcommand{\RealPS}[1]{\mathrm{R}\PS{#1}}
+\newcommand{\CompPS}[1]{\mathrm{C}\PS{#1}}
+\newcommand{\lspace}[1]{\mathscr{#1}}               % linear space
+\newcommand{\lsvf}[2]{\lspace{#1}_{\mathbb{#2}}}    % linear space V on field F$$
+\newcommand{\dlspace}[1]{\mathscr{#1}^*}            % dual linear space
+\newcommand{\dlsvf}[2]{\lspace{#1}^*_{\mathbb{#2}}}
+
+
+\newcommand{\edf}[2]{\mathscr{A}^{#1}(\mathcal{#2})}
+\newcommand{\efbd}[3]{\Lambda^{#1}(\mathcal{#2}_{#3}^*)}
+\newcommand{\efb}[3]{\Lambda^{#1}(\mathcal{#2}_{#3})}
+\DeclareMathAlphabet{\mathsfsl}{OT1}{cmss}{m}{sl}
+\newcommand{\tensor}[1]{\mathsfsl{#1}}    % tensor
+\newcommand{\quat}[1]{\mathbbm{#1}}       % quaternions
+\newcommand{\prodku}[2]{{#1}^{^{[#2]}}}
+\newcommand{\prodkd}[2]{{#1}_{_{[#2]}}}
+\newcommand{\Zernpoly}[2]{\operatorname{Z}_{#1}^{#2}}
+\newcommand{\Radipoly}[2]{\operatorname{R}_{#1}^{#2}}
+\newcommand{\Hypergeo}[3]{F\left(\left. \frac{#1}{#2}\right| {#3} \right)}
+\DeclareMathOperator{\Prob}{\mathrm{Pr}}
+\DeclareMathOperator{\E}{\mathrm{E}}
+\DeclareMathOperator{\Cov}{\mathrm{Cov}}
+\DeclareMathOperator{\D}{\mathrm{Var}}
+\newcommand{\Expt}[1]{\E\set{#1}}
+\newcommand{\Var}[1]{\D\set{#1}}
+\newcommand{\ERD}{\mathrm{ERD}}
+\newcommand{\Eig}{\mathrm{Eig}}
+\newcommand{\err}{\epsilon}  % error
+
+\newcommand{\intset}[2]{\left\{#1,\cdots,#2\right\}} % set of integers
