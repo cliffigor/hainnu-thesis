@@ -12,7 +12,7 @@
 为了方便起见，本模板增加了一些新命令，您也可以在Settings文件夹下的UserTextDef、UserMathDef以及UserAlgrCode文件中创建属于您自己的全新命令。使用简短的命令有助于提高文档协作效率,这背后的逻辑其实就是你所学的编程思想——把重复动作包装成小函数以便重用，这是计算思维的标准内容。
 
 \subsection{参考文献数据库文件的制定}
-在{\LaTeX{}}排版系统中，可以使用BibTex文件自动生成参考文献。BibTeX文件是包含参考文献信息的数据库条目。BibTeX文件可以手动制作，也可以借助网络环境下载所需的文献引用信息条码。您可以从各类学术搜索网站上选择引用至BibTex文件，随后将其中的内容添加至BibTex文件夹下的某个bib文件下即可。图~\ref{ref-baidu-academic}~给出了从百度学术网页下载BibTeX文件的方法。您可以通过不同文件的存放对您的参考文献进行分类。需要特别提醒你的要点是: 网上下载的BibTeX文件或数据库条目的信息不一定完整或准确，自动生成的索引名称也不一定好用好记好区分, 你需要自己做必要的增补或修改, 图~\ref{ref-infor-not-complete}~给出了两个典型的案例: 图~\ref{ref-ieee}~对应的是从IEEE Xplore文献网站下载BibTeX文件的情形;图~\ref{ref-elsevier}~展示的是从Elsevier期刊网站下载BibTeX文件的情形。图~\ref{ref-baidu-academic}~生成的信息也是不完整的，你看到的那个GB/T 7714 对应的文献信息也是不完整的。我们建议你将每条文献对应的相关内容一次性做好，免得以后遗忘或错漏。磨刀不误砍柴工，切记！
+在{\LaTeX{}}排版系统中，可以使用BibTex文件自动生成参考文献。BibTeX文件是包含参考文献信息的数据库条目。BibTeX文件可以手动制作，也可以借助网络环境下载所需的文献引用信息条码。您可以从各类学术搜索网站上选择引用至BibTex文件，随后将其中的内容添加至BibTex文件夹下的某个bib文件下即可。图~\ref{ref-baidu-academic}~给出了从百度学术网页下载BibTeX文件的方法。您可以通过不同文件的存放对您的参考文献进行分类。需要特别提醒你的要点是: 网上下载的BibTeX文件或数据库条目的信息不一定完整或准确，自动生成的索引名称也不一定好用好记好区分, 你需要自己做必要的增补或修改, 图~\ref{ref-infor-not-complete}~给出了两个典型的案例: 图~\ref{ref-ieee}~对应的是从IEEE Xplore文献网站下载BibTeX文件的情形;图~\ref{ref-elsevier}~展示的是从Elsevier期刊网站下载BibTeX文件的情形。图~\ref{ref-baidu-academic}~生成的信息是不完整的，你看到的那个GB/T 7714 对应的文献信息也是不完整的。我们建议你将每条文献对应的相关内容一次性做好，免得以后遗忘或错漏。磨刀不误砍柴工，切记！
 \begin{figure}[hp]
 	\centering
 	\includegraphics[height=4cm,width=10cm,trim=30 20 40 50,clip]{RefBaiduAcad}
@@ -108,7 +108,7 @@
 
 \subsection{行内公式与行间公式}
 
-Newton第二定律，高中生喜欢写$f=ma$, 而大学生则经常写$\displaystyle{f=m\fracode{v}{t}}$。定积分
+Newton第二定律，高中生喜欢写$f=ma$, 而大学生则经常写成$\displaystyle{f=m\fracode{v}{t}}$。定积分
 $\displaystyle{\int^b_a g(x)\dif x}$可以用$G(b)-G(a)$来计算，其中$g(x) = \fracode{G(x)}{x}$。
 
 你喜欢线性代数吗？我写个线性方程给你看看
@@ -471,7 +471,7 @@ $$
 
 \section{参考文献使用示例}
 
-对于论文的写作而言，文献的引用是非常重要的。言之有理，言之有据，这是基本的要求。文献引用，需要使用命令\verb|\cite|与文献条码标签。在中国大陆地区，有参考文献的国家标准，即GB/T 7714, 请你注意这个标准。本模板采用的参考文献格式复合这个标准，是自动利用BibTeX文件自动生成的, 这得感谢开发gbt7714宏包的作者与维护者们! 这里有几种不同类型的参考文献:
+对于论文的写作而言，文献的引用无疑是非常重要的。言之有理，言之有据，这是基本的要求。文献引用，需要使用命令\verb|\cite|与文献条码标签。在中国大陆地区，有参考文献的国家标准，即GB/T 7714, 请你注意这个标准。本模板采用的参考文献格式复合这个标准，是自动利用BibTeX文件自动生成的, 这得感谢开发gbt7714宏包的作者与维护者们! 这里有几种不同类型的参考文献:
 
 \begin{itemize}
 \item[\ding{172}] 期刊论文, 例如\cite{XmDeng2007,Brown1984,ZHY2017RS,ZHY2012manifold}以及\cite{Wing2006CT}
