@@ -32,17 +32,17 @@ headsep=0.5cm
 			pagestyle=hainnu@headings,
 			format=\centering\heiti\zihao{3},
 			number={\thechapter},
-			name={第,章\quad},
-			aftername={},
+			name={第,章},
+			aftername={\quad},
 			fixskip=true,
 			beforeskip=1.4cm,
 			afterskip=1.0cm,
 		},
 		section={% 四号字体
 			format=\raggedright\heiti\zihao{4}\hspace{8mm},
-			number={\thesection\quad},
+			number={\thesection},
 			name={},
-			aftername={},
+			aftername={\quad},
 			beforeskip=0pt,
 			afterskip=0pt
 		},
@@ -51,6 +51,7 @@ headsep=0.5cm
 			afterskip=0pt,
 			number={\thesubsection},
 			name={},
+			aftername={\quad}
 		}
 	}
 \else
@@ -478,23 +479,41 @@ AutoFakeBold=1.5
 \RequirePackage{titletoc}
 \contentsmargin{0pt}
 
-\titlecontents{chapter}
-[0pt]
-{\bfseries\zihao{-4}}
-{\makebox[5.32em][s]{\thecontentslabel}\hspace*{-0.1cm}}%调整目录章节编号大概为4个字符
-%{\renewcommand{\CJKglue}{\hskip 6pt}\thecontentslabel\renewcommand{\CJKglue}{\hskip 0pt}\hspace*{-0.1cm}}
-{}
-{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
-%[\nointerlineskip]
-%
+\if@hainnuthesis@arabictitlenum
+	\titlecontents{chapter}
+	[0pt]
+	{\bfseries\zihao{-4}}
+	{\makebox[4.3em][s]{\thecontentslabel}\hspace*{1em}}%调整目录章节编号大概为4个字符
+	{}
+	{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+	%[\nointerlineskip]
+	
+	\titlecontents{section}
+	[0pt]
+	{\zihao{-4}\hspace{2\ccwd}}
+	{\thecontentslabel\hspace*{1em}}
+	{}
+	{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+	[\nointerlineskip]
+	
+\else
+	\titlecontents{chapter}
+	[0pt]
+	{\bfseries\zihao{-4}}
+	{\makebox[5.3em][s]{\thecontentslabel}}%调整目录章节编号大概为4个字符
+	{}
+	{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+	
+	\titlecontents{section}
+	[0pt]
+	{\zihao{-4}\hspace{2\ccwd}}
+	{\thecontentslabel}
+	{}
+	{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+	[\nointerlineskip]
+\fi
 
-\titlecontents{section}
-[0pt]
-{\zihao{-4}\hspace{2\ccwd}}
-{\hspace*{-1em}\thecontentslabel}
-{}
-{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
-[\nointerlineskip]
+
 %
 
 %% 公式编号
