@@ -1,4 +1,54 @@
 \appendices
+\section{数学预备知识}
+\subsection{线性代数}
+你喜欢线性代数吗？我写个线性方程给你看看
+\begin{equation}
+	\mat{A} \vec{x}= \vec{b}, \quad \mat{A}\in \ES{R}{n}{n}, \vec{x}\in \ES{R}{n}{1}
+\end{equation}
+特殊地，可以是
+\begin{equation}
+	\mat{A} = \begin{bmatrix}
+		1 & 2 \\
+		2 & 3 
+	\end{bmatrix},\quad
+	\vec{x}=\begin{bmatrix}
+		x_1 \\ x_2
+	\end{bmatrix}, \quad
+	\vec{b} =\begin{bmatrix}
+		1 \\ 2
+	\end{bmatrix}
+\end{equation}
 
+图~\ref{hnulogo}是海师logo图片。
+\begin{figure}[hp]
+	\centering
+	\includegraphics[height=4cm,width=10cm,trim=30 20 40 50,clip]{logo}
+	\caption{海师logo}
+	\label{hnulogo}
+\end{figure}
 
-\zhlipsum[1-3]
+\begin{table}[htp]
+	\caption{一个简单的表格}\label{tab1}
+	\centering
+	\begin{tabular}{|l|c|c|}
+		\hline
+		功能          &WEB         &APP         \\ \hline
+		注册          &$\surd$     &$\surd$     \\ \hline
+		登录          &$\surd$     &$\surd$     \\ \hline
+		推送          &$\times$    &$\surd$     \\ \hline
+	\end{tabular}
+\end{table}
+
+\subsection{微积分}
+Newton第二定律，高中生喜欢写$f=ma$, 而大学生则经常写成$\displaystyle{f=m\fracode{v}{t}}$。定积分
+$\displaystyle{\int^b_a g(x)\dif x}$可以用$G(b)-G(a)$来计算，其中$g(x) = \fracode{G(x)}{x}$。
+
+这里有几个等式
+\begin{equation}
+	\begin{split}
+		\int^b_a f(x)\dif x 
+		& = \int^b_a f(t)\dif t \\
+		& = \int^c_a f(x)\dif x + \int^b_c f(x)\dif x, \quad c\in [a,b] 
+	\end{split}
+\end{equation}
+%\zhlipsum[1-3]

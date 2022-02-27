@@ -297,7 +297,7 @@ AutoFakeBold=1.5
 	                Supervisor: & {\hainnu@eacadetitle}~~{\hainnu@esupervisor}
 	        \end{tabular*}
 	    \else 
-	    	\begin{tabular*}{6.5cm}{rp{5cm}}
+	    	\begin{tabular*}{6.5cm}{rp{8cm}}
 	    	Candidate: & {\hainnu@eauthor} \\
 	    	Supervisor: & {\hainnu@eacadetitle}~~{\hainnu@esupervisor}\\
 	    	\quad & {\hainnu@eacadetitleB}~~{\hainnu@esupervisorB}
@@ -367,15 +367,17 @@ AutoFakeBold=1.5
 
 %% Command for create special chapters
 \NewDocumentCommand\special@chapter%
-{ s m O{\zihao{3}\heiti} m m m }%
+{ s m O{\zihao{3}\heiti} m m m O{\renewcommand{\theequation}{\thechapter.\thesection.\arabic{equation}}}}%
 {\csdef{#2}{%
 \cleardoublepage%
 \phantomsection%
-\IfBooleanTF{#1}{\thispagestyle{empty}}{\addcontentsline{toc}{chapter}{#4}\chaptermark{#4}}%
+\IfBooleanTF{#1}{\thispagestyle{empty}}
+{\addcontentsline{toc}{chapter}{#4}\chaptermark{#4}}%
 \markboth{{#4}}{{#4}}
 \mbox{}%
 \\[#5]%
 \noindent\makebox[\textwidth][c]{#3#4}%
+#7
 \par\vspace{#6}%
 }}
 %
@@ -415,6 +417,20 @@ AutoFakeBold=1.5
 {\@appendixname}%   <- chapter title
 {\baselineskip}%   <- beforeskip: 2 lines
 {\baselineskip}%    <- afterskip: 1 line
+[\setcounter{section}{0}% 				<- special environment
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\renewcommand\thesection{\Alph{section}}
+\renewcommand{\theequation}{\thesubsection.\arabic{equation}}
+\renewcommand{\thefigure}{\thesubsection.\arabic{figure}}
+\renewcommand{\thetable}{\thesubsection.\arabic{table}}
+\if@hainnuthesis@arabictitlenum
+\quad
+\else
+	\CTEXsetup[number={\thesection \quad},name={}]{section}
+\fi
+]
 
 % ==== Achievements
 \def\@achievename{在学期间学术成果情况}
