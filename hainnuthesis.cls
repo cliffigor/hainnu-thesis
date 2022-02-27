@@ -158,11 +158,6 @@ UprightFont = *,
 AutoFakeBold=1.5
 ]
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% set Figures path
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\graphicspath{{figures/}{logoimage/}}
-
 %页眉设置
 \RequirePackage{fancyhdr}
 \if@hainnuthesis@arabictitlenum
