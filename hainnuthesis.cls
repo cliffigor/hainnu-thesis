@@ -363,7 +363,7 @@ AutoFakeBold=1.5
 
 %% Command for create special chapters
 \NewDocumentCommand\special@chapter%
-{ s m O{\zihao{3}\heiti} m m m O{\renewcommand{\theequation}{\thechapter.\thesection.\arabic{equation}}}}%
+{ s m O{\zihao{3}\heiti} m m m O{}}%
 {\csdef{#2}{%
 \cleardoublepage%
 \phantomsection%
