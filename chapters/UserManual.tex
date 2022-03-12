@@ -32,10 +32,23 @@
 \label{ref-infor-not-complete}
 \end{figure}
 
-\section{封面选择与专业/学术型学位}
+\section{封面选择}
 
-专业型学位(例如电子信息专业硕士)与学术型学位(例如网络空间安全学术硕士)所采用的封面并不相同，你需要自己选择，
-这通过文档类型参数profesdegree与academdegree进行控制。
+\subsection{本科生毕业设计或学位论文}
+在\verb|main-BS.tex|文档中, 请在文档类型中进行设置。本科生授予的学位是学士，英文单词为
+bachelor。
+\begin{itemize}
+\item 人文社科大类章节编号用中文,设置如下:\\
+      \verb|\documentclass[chinesetitlenum,bachelor]{hainnuthesis}|
+\item 理工科大类章节编号用数字，设置如下:\\
+      \verb|\documentclass[arabictitlenum,bachelor]{hainnuthesis}|
+\end{itemize}
+
+\subsection{硕士与博士研究生学位论文}
+
+\subsubsection{专业型学位论文与学术型学位论文}
+
+专业型学位(例如电子信息专业硕士)与学术型学位(例如网络空间安全学术硕士)所采用的封面并不相同，你需要自己选择，这通过文档类型参数\verb|profesdegree|与\verb|academdegree|进行控制。
 \begin{itemize}
 \item 专业型学位，采用的设置如下:
 	\begin{itemize}
@@ -52,6 +65,10 @@
 	 \verb|\documentclass[academdegree,arabictitlenum]{hainnuthesis}|
 	\end{itemize} 
 \end{itemize}
+
+\subsubsection{硕士论文与博士论文}
+硕士与博士学位论文，在学位论文信息输入的参数设定列表中，利用\verb|degreelevel|
+进行区分，如果是硕士则填写“硕士”，如果是博士则填写“博士” 
 
 
 \section{章节编号差异与风格选择}
@@ -109,7 +126,7 @@
 \subsection{行内公式与行间公式}
 
 Newton第二定律，高中生喜欢写$f=ma$, 而大学生则经常写成$\displaystyle{f=m\fracode{v}{t}}$。定积分
-$\displaystyle{\int^b_a g(x)\dif x}$可以用$G(b)-G(a)$来计算，其中$g(x) = \fracode{G(x)}{x}$。
+$\displaystyle{\int^b_a g(x)\dif x}$可以用$G(b)-G(a)$来计算，其中$\displaystyle g(x) = \fracode{G(x)}{x}$。
 
 你喜欢线性代数吗？我写个线性方程给你看看
 \begin{equation}
@@ -334,7 +351,12 @@ $$
 	\caption{WebGIS 技术思维导图}\label{mindmap}
 \end{figure}
 
+
+\newpage
+
 \section{表格示例}
+
+\subsection{简单表格}
 
 \begin{table}[htp]
 	\caption{一个简单的表格}\label{tab1}
@@ -363,7 +385,7 @@ $$
 \end{table}
 
 
-\begin{table}[htp]
+\begin{table}[h]
 \centering
 \caption{绘制斜线表头}
 \begin{tabular}{|c|c|c|c|c|c|c|}
@@ -377,10 +399,13 @@ $$
 \end{tabular}
 \end{table}
 
+\subsection{复杂表格}
 
 去网站\url{https://www.tablesgenerator.com/latex_tables}看看，你肯定会喜欢的!更改好表格的数据后，点击Generate即可生成\LaTeX 代码！
 
-\section{代码示例}
+\newpage 
+
+\section{程序代码示例}
 
 \subsection{代码片段}
 这里有几行C程序代码, 虽然没加方框，但是添加了行号。

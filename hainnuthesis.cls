@@ -2,17 +2,6 @@
 \ProvidesClass{hainnuthesis}[2021/11/03 Thesis Template for Hainan Normal University]
 
 \LoadClass[UTF8,fontset=none,zihao=-4,linespread=1.42]{ctexbook}
-%设置页边距
-\newcommand\checkbox{\raisebox{.5ex}{\fbox{\phantom{\rule{.5ex}{.5ex}}}}}
-\RequirePackage[%
-%showframe,
-a4paper,
-hmargin=3.17cm,
-vmargin=2.54cm,
-headheight=\baselineskip,
-headsep=0.5cm
-]{geometry}
-
 %文档选项
 \RequirePackage{kvoptions}
 
@@ -20,17 +9,76 @@ headsep=0.5cm
 	family = @hainnuthesis,
 	prefix = @hainnuthesis@
 }
-
+\DeclareBoolOption[true]{master}       % automatically creates \ifmypackage@fullpage
+\DeclareComplementaryOption{bachelor}{master}  % automatically inverses the former
 \DeclareBoolOption[true]{arabictitlenum}       % automatically creates \ifmypackage@fullpage
 \DeclareComplementaryOption{chinesetitlenum}{arabictitlenum}  % automatically inverses the former
 \DeclareBoolOption[true]{academdegree}       % automatically creates \ifmypackage@fullpage
 \DeclareComplementaryOption{profesdegree}{academdegree}  % automatically inverses the former
 \ProcessKeyvalOptions*{}
-\if@hainnuthesis@arabictitlenum
+\if@hainnuthesis@master
+	\if@hainnuthesis@arabictitlenum
+		\ctexset{%
+			chapter={%
+				pagestyle=hainnu@headings,
+				format=\centering\heiti\zihao{3},
+				number={\thechapter},
+				name={第,章},
+				aftername={\quad},
+				fixskip=true,
+				beforeskip=1.4cm,
+				afterskip=1.0cm,
+			},
+			section={% 四号字体
+				format=\raggedright\heiti\zihao{4}\hspace{8mm},
+				number={\thesection},
+				name={},
+				aftername={\quad},
+				beforeskip=0pt,
+				afterskip=0pt
+			},
+			subsection={% 小四号字体 
+				format=\raggedright\bfseries\heiti\zihao{-4}\hspace{2\ccwd},
+				afterskip=0pt,
+				number={\thesubsection},
+				name={},
+				aftername={\quad}
+			}
+		}
+	\else
+		\ctexset{%
+			chapter={%
+				pagestyle=hainnu@headings,
+				format=\centering\heiti\zihao{3},
+				number={\chinese{chapter}},
+				name={第,章\quad},
+				aftername={},
+				fixskip=true,
+				beforeskip=1.4cm,
+				afterskip=1.0cm,
+			},
+			section={% 四号字体
+				format=\raggedright\heiti\zihao{4}\hspace{8mm},
+				number={\chinese{section}},
+				name={第,节\quad},
+				aftername={},
+				beforeskip=0pt,
+				afterskip=0pt
+			},
+			subsection={% 小四号字体 
+				format=\raggedright\bfseries\heiti\zihao{-4}\hspace{2\ccwd},
+				afterskip=0pt,
+				number={\chinese{subsection}},
+				name={第,小节\quad},
+			}
+		}
+	\fi
+\else				%本科
+	\if@hainnuthesis@arabictitlenum
 	\ctexset{%
 		chapter={%
 			pagestyle=hainnu@headings,
-			format=\centering\heiti\zihao{3},
+			format=\centering\zihao{3}\bfseries,
 			number={\thechapter},
 			name={第,章},
 			aftername={\quad},
@@ -38,27 +86,27 @@ headsep=0.5cm
 			beforeskip=1.4cm,
 			afterskip=1.0cm,
 		},
-		section={% 四号字体
-			format=\raggedright\heiti\zihao{4}\hspace{8mm},
+		section={% 小三号字体
+			format=\bfseries\zihao{-3},
 			number={\thesection},
 			name={},
 			aftername={\quad},
 			beforeskip=0pt,
 			afterskip=0pt
 		},
-		subsection={% 小四号字体 
-			format=\raggedright\bfseries\heiti\zihao{-4}\hspace{2\ccwd},
+		subsection={% 四号字体 
+			format=\bfseries\zihao{4},
 			afterskip=0pt,
 			number={\thesubsection},
 			name={},
 			aftername={\quad}
 		}
 	}
-\else
+	\else
 	\ctexset{%
 		chapter={%
 			pagestyle=hainnu@headings,
-			format=\centering\heiti\zihao{3},
+			format=\centering\zihao{3}\bfseries,
 			number={\chinese{chapter}},
 			name={第,章\quad},
 			aftername={},
@@ -66,25 +114,26 @@ headsep=0.5cm
 			beforeskip=1.4cm,
 			afterskip=1.0cm,
 		},
-		section={% 四号字体
-			format=\raggedright\heiti\zihao{4}\hspace{8mm},
+		section={% 三号字体
+			format=\zihao{-3}\bfseries,
 			number={\chinese{section}},
 			name={第,节\quad},
 			aftername={},
 			beforeskip=0pt,
 			afterskip=0pt
 		},
-		subsection={% 小四号字体 
-			format=\raggedright\bfseries\heiti\zihao{-4}\hspace{2\ccwd},
+		subsection={% 四号字体 
+			format=\bfseries\zihao{4},
 			afterskip=0pt,
 			number={\chinese{subsection}},
 			name={第,小节\quad},
 		}
 	}
+	\fi
 \fi
-
 \newlength\twolineskip
 \setlength\twolineskip{\baselineskip}
+\newcommand{\blankline}[1]{\zihao{#1}\quad\\}
 
 \RequirePackage{diagbox}
 
@@ -99,7 +148,21 @@ headsep=0.5cm
 % 列表设定
 \RequirePackage{enumerate}
 
-
+%设置页边距
+\newcommand\checkbox{\raisebox{.5ex}{\fbox{\phantom{\rule{.5ex}{.5ex}}}}}
+\if@hainnuthesis@master
+\RequirePackage[%
+%showframe,
+a4paper,
+hmargin=3.17cm,
+vmargin=2.54cm,
+headheight=\baselineskip,
+headsep=0.5cm
+]{geometry}
+\else
+\RequirePackage{geometry}
+\geometry{a4paper,left=3cm,right=3.17cm,top=2.54cm,bottom=2.54cm}
+\fi
 % 插图设定
 \RequirePackage{graphics}%
 \RequirePackage{graphicx}%
@@ -117,8 +180,8 @@ headsep=0.5cm
 \RequirePackage{longtable}%
 \RequirePackage{tabularx}%
 \def\tabularxcolumn#1{m{#1}}
-
-
+% 行间距
+\RequirePackage{setspace}
 % 程序代码环境
 \RequirePackage{listings} 
 
@@ -147,17 +210,28 @@ headsep=0.5cm
 \RequirePackage{fontspec}
 
 \newCJKfontfamily{\songti}{simsun.ttc}[%
-Path={./fonts/},
+%Path={./fonts/},
 UprightFont = *,
 AutoFakeBold=2.5
 ]
 
 \newCJKfontfamily{\heiti}{simhei.ttf}[%
-Path={./fonts/},
+%Path={./fonts/},
 UprightFont = *,
 AutoFakeBold=1.5
 ]
 
+\newCJKfontfamily{\fangsong}{simfang.ttf}[%
+%Path={./fonts/},
+UprightFont = *,
+AutoFakeBold=1.5
+]
+
+\newCJKfontfamily{\kaishu}{simkai.ttf}[%
+%Path={./fonts/},
+UprightFont = *,
+AutoFakeBold=1.5
+]
 %页眉设置
 \RequirePackage{fancyhdr}
 \if@hainnuthesis@arabictitlenum
@@ -165,11 +239,15 @@ AutoFakeBold=1.5
 \else
 	\renewcommand{\chaptermark}[1]{\markboth{第\,\chinese{chapter} \,章\quad #1}{}}
 \fi
-	
+
 \fancypagestyle{hainnu@headings}{%
     \fancyhead{}
     \fancyhead[OC]{\songti\zihao{5}\leftmark}
-    \fancyhead[EC]{\songti\zihao{5}海南师范大学{\hainnu@degreelevel}学位论文}
+    \if@hainnuthesis@master
+    	\fancyhead[EC]{\songti\zihao{5}海南师范大学{\hainnu@degreelevel}学位论文}
+    \else
+    	\fancyhead[EC]{\songti\zihao{5}海南师范大学本科生毕业论文}
+    \fi
     \fancyfoot{}
     \fancyfoot[C]{\zihao{-5}\thepage}
     \renewcommand{\headrulewidth}{0.4pt}
@@ -177,7 +255,7 @@ AutoFakeBold=1.5
 \renewcommand\frontmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi
     \@mainmatterfalse
-    \pagenumbering{roman}
+    \pagenumbering{Roman}
     \pagestyle{plain}}
 \renewcommand\mainmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi
@@ -188,9 +266,12 @@ AutoFakeBold=1.5
     \if@openright\cleardoublepage\else\clearpage\fi
     \@mainmatterfalse
     \pagestyle{hainnu@headings}}
-
+%目录深度
+\if@hainnuthesis@master
 \setcounter{tocdepth}{1} 
-
+\else
+\setcounter{tocdepth}{2} 
+\fi
 
 %定义关键字
 \RequirePackage{xparse}
@@ -206,6 +287,9 @@ AutoFakeBold=1.5
 \hainnu@define@key{studentid}
 \hainnu@define@key{secretlevel}
 \hainnu@define@key{author}
+\hainnu@define@key{major}
+\hainnu@define@key{department}
+\hainnu@define@key{class}
 \hainnu@define@key{supervisor}
 \hainnu@define@key{supervisorB}
 \hainnu@define@key{acadetitle}
@@ -218,6 +302,8 @@ AutoFakeBold=1.5
 \hainnu@define@key{degreetype}
 \hainnu@define@key{submitdate}
 \hainnu@define@key{title}
+\hainnu@define@key{corresaddr}
+\hainnu@define@key{type}
 % -- keys in English
 \hainnu@define@key{eauthor}
 \hainnu@define@key{etitle}
@@ -227,55 +313,98 @@ AutoFakeBold=1.5
 \hainnu@define@key{esupervisorB}
 \hainnu@define@key{eacadetitleB}
 \hainnu@define@key{ethesistype}   
+\hainnu@define@key{ecorresaddr}
 %% ==== Cover and titlepage
 \renewcommand\maketitle{%
     \parindent=0pt
     \cleardoublepage\thispagestyle{empty}
     \begin{center}
-        \mbox{}\par\vspace{.25cm}
-        {\bfseries\zihao{-4}
-            \renewcommand\arraystretch{.9}
-            \setlength\tabcolsep{0pt}
-            \begin{tabular}{p{5\ccwd}p{10\ccwd}p{6\ccwd}l}
-                \makebox[5\ccwd][s]{学校代码：}  & \CJKunderline{\makebox[6\ccwd][c]{\hainnu@schoolcode}} & \makebox[6\ccwd][s]{研究生学号：} & \CJKunderline{\makebox[8\ccwd][c]{\hainnu@studentid}} \\
-                \makebox[5\ccwd][s]{分类号：}   & \CJKunderline{\makebox[6\ccwd][c]{\hainnu@classifier}} & \makebox[6\ccwd][s]{密级：} & \CJKunderline{\makebox[8\ccwd][c]{\hainnu@secretlevel}}
-        \end{tabular}}
-        \par\vspace{2cm}
-        \includegraphics[width=.55\textwidth]{logo.png}
-        \par\vspace{.6cm}
-        {\zihao{0}\heiti {\hainnu@degreelevel}学位论文}
-        \par\vspace{1.2cm}
-        {\zihao{2}\bfseries\heiti\linespread{1}\selectfont
-            \setlength\tabcolsep{0pt}
-            \begin{tabular*}{.85\textwidth}{P{.85\textwidth}}
-                \hainnu@title
-        \end{tabular*}}
-        \par\vspace{2.5cm}
-        {\zihao{3}\heiti
-            \renewcommand\arraystretch{1.1}
-            \if@hainnuthesis@academdegree
-	            \begin{tabular}{@{}p{7\ccwd}@{~}p{13\ccwd}@{}}
-	            	\makebox[7\ccwd][s]{论文作者} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@author}\hfill\mbox{}} \\
-	            	\makebox[7\ccwd][s]{指导教师} & \CJKunderline{\makebox[13\ccwd][c]{{\hainnu@supervisor}\quad{\hainnu@acadetitle}}\hfill\mbox{}} \\
-	            	\makebox[7\ccwd][s]{一级学科} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@primarydisc}\hfill\mbox{}} \\
-	            	\makebox[7\ccwd][s]{二级学科} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@secndrydisc}\hfill\mbox{}} \\
-	            	\makebox[7\ccwd][s]{研究方向} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@researchdir}\hfill\mbox{}} \\
-	            	\makebox[7\ccwd][s]{申请学位类别} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@degreetype}\hfill\mbox{}} \\
-	            	\makebox[7\ccwd][s]{提交日期} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@submitdate}\hfill\mbox{}} 
-	        	\end{tabular}
-            \else
-                \begin{tabular}{@{}p{7\ccwd}@{~}p{13\ccwd}@{}}
-	            	\makebox[7\ccwd][s]{论文作者} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@author}\hfill\mbox{}} \\
-	            	\makebox[7\ccwd][s]{指导教师} & \CJKunderline{\makebox[13\ccwd][c]{{\hainnu@supervisor}\quad{\hainnu@acadetitle}}\hfill\mbox{}} \\
-	            	\quad & \CJKunderline{\makebox[13\ccwd][c]{{\hainnu@supervisorB}\quad{\hainnu@acadetitleB}}\hfill\mbox{}} \\
-	            	\makebox[7\ccwd][s]{专业学位领域} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@profesfield}\hfill\mbox{}} \\
-        		    \makebox[7\ccwd][s]{申请学位类别} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@degreetype}\hfill\mbox{}} \\
-	            	\makebox[7\ccwd][s]{提交日期} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@submitdate}\hfill\mbox{}} 
-            	\end{tabular}
-            \fi
-        }
+    	\if@hainnuthesis@master
+	        \mbox{}\par\vspace{.25cm}
+	        {\bfseries\zihao{-4}
+	            \renewcommand\arraystretch{.9}
+	            \setlength\tabcolsep{0pt}
+	            \begin{tabular}{p{5\ccwd}p{10\ccwd}p{6\ccwd}l}
+	                \makebox[5\ccwd][s]{学校代码：}  & \CJKunderline{\makebox[6\ccwd][c]{\hainnu@schoolcode}} & \makebox[6\ccwd][s]{研究生学号：} & \CJKunderline{\makebox[8\ccwd][c]{\hainnu@studentid}} \\
+	                \makebox[5\ccwd][s]{分类号：}   & \CJKunderline{\makebox[6\ccwd][c]{\hainnu@classifier}} & \makebox[6\ccwd][s]{密级：} & \CJKunderline{\makebox[8\ccwd][c]{\hainnu@secretlevel}}
+	        \end{tabular}}
+	        \par\vspace{2cm}
+	        \includegraphics[width=.55\textwidth]{logo.png}
+	        \par\vspace{.6cm}
+	        {\zihao{0}\heiti {\hainnu@degreelevel}学位论文}
+	        \par\vspace{1.2cm}
+	        {\zihao{2}\bfseries\heiti\linespread{1}\selectfont
+	            \setlength\tabcolsep{0pt}
+	            \begin{tabular*}{.85\textwidth}{P{.85\textwidth}}
+	                \hainnu@title
+	        \end{tabular*}}
+	        \par\vspace{2.5cm}
+	        {\zihao{3}\heiti
+	            \renewcommand\arraystretch{1.1}
+	            \if@hainnuthesis@academdegree
+		            \begin{tabular}{@{}p{7\ccwd}@{~}p{13\ccwd}@{}}
+		            	\makebox[7\ccwd][s]{论文作者} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@author}\hfill\mbox{}} \\
+		            	\makebox[7\ccwd][s]{指导教师} & \CJKunderline{\makebox[13\ccwd][c]{{\hainnu@supervisor}\quad{\hainnu@acadetitle}}\hfill\mbox{}} \\
+		            	\makebox[7\ccwd][s]{一级学科} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@primarydisc}\hfill\mbox{}} \\
+		            	\makebox[7\ccwd][s]{二级学科} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@secndrydisc}\hfill\mbox{}} \\
+		            	\makebox[7\ccwd][s]{研究方向} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@researchdir}\hfill\mbox{}} \\
+		            	\makebox[7\ccwd][s]{申请学位类别} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@degreetype}\hfill\mbox{}} \\
+		            	\makebox[7\ccwd][s]{提交日期} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@submitdate}\hfill\mbox{}} 
+		        	\end{tabular}
+	            \else
+	                \begin{tabular}{@{}p{7\ccwd}@{~}p{13\ccwd}@{}}
+		            	\makebox[7\ccwd][s]{论文作者} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@author}\hfill\mbox{}} \\
+		            	\makebox[7\ccwd][s]{指导教师} & \CJKunderline{\makebox[13\ccwd][c]{{\hainnu@supervisor}\quad{\hainnu@acadetitle}}\hfill\mbox{}} \\
+		            	\quad & \CJKunderline{\makebox[13\ccwd][c]{{\hainnu@supervisorB}\quad{\hainnu@acadetitleB}}\hfill\mbox{}} \\
+		            	\makebox[7\ccwd][s]{专业学位领域} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@profesfield}\hfill\mbox{}} \\
+	        		    \makebox[7\ccwd][s]{申请学位类别} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@degreetype}\hfill\mbox{}} \\
+		            	\makebox[7\ccwd][s]{提交日期} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@submitdate}\hfill\mbox{}} 
+	            	\end{tabular}
+	            \fi
+	        }
+    	\else 
+			\includegraphics[height=6.0cm]{logoimage/logo_bachelor.png}\\
+			\zihao{1}{\songti{{\renewcommand{\CJKglue}{\hskip 12pt}\textbf{本科生毕业{\hainnu@type}}}}}\\
+			\blankline{-4}
+			\blankline{-4}
+			\blankline{-4}
+			\blankline{-4}
+			\blankline{-4}
+			{\zihao{-2}{\textbf{\hainnu@title}}}
+			\blankline{-4}
+			\blankline{-4}
+			\blankline{-4}
+			\blankline{-4}
+			\fontsize{18pt}\baselineskip
+			\title{\hainnu@title}
+			\vskip 0.1cm
+			\begin{spacing}{2}
+				\makebox[6em][s]{{\zihao{4}姓名}：}
+				\underline{\makebox[60mm][c]{\kaishu\zihao{4}\hainnu@author}}\\
+				%\vskip 0.25cm
+				\makebox[6em][s]{{\zihao{4}学号}：}
+				\underline{\makebox[60mm][c]{{\kaishu\zihao{4}\hainnu@studentid}}}\\
+				%\vskip 0.25cm
+				\makebox[6em][s]{{\zihao{4}专业}：}
+				\underline{\makebox[60mm][c]{\kaishu\zihao{4}\hainnu@major}}\\
+				%\vskip 0.25cm
+				\makebox[6em][s]{{\zihao{4}年级}：}
+				\underline{\makebox[60mm][c]{\kaishu\zihao{4}\hainnu@class~级}}\\
+				%\vskip 0.25cm
+				\makebox[6em][s]{{\zihao{4}学院}：}
+				\underline{\makebox[60mm][c]{\kaishu\zihao{4}\hainnu@department}}\\
+				%\vskip 0.25cm
+				\makebox[6em][s]{{\zihao{4}完成日期}：}
+				\underline{\makebox[60mm][c]{\kaishu\zihao{4}\hainnu@submitdate}}\\
+				\makebox[6em][s]{{\zihao{4}指导教师}：}
+				\underline{\makebox[60mm][c]{\kaishu\zihao{4}\hainnu@supervisor~~\hainnu@acadetitle}}\\
+				\makebox[30mm][s]{\quad}
+				\makebox[60mm][c]{\quad}
+			\end{spacing}
+    	\fi
     \end{center}
     \cleardoublepage
+    \if@hainnuthesis@master
     \begin{center}
         \mbox{}\par\vspace{1.25cm}
         {\zihao{-2}\bfseries
@@ -326,26 +455,78 @@ AutoFakeBold=1.5
     \hspace{2\ccwd}\makebox[9\ccwd][s]{日期：}\rule[-2mm]{25mm}{.4pt}\hfill \makebox[7\ccwd][s]{日期：}\rule[-2mm]{25mm}{.4pt}
     %
     \parindent=2\ccwd
+    \else
+    \parindent=2em
+	    \newcommand{\hainnu@declaretext}{%
+	    	本人声明所呈交的毕业{\hainnu@type}是本人在导师指导下进行的研究工作及取得的研究成果，除了文中特别加以标注和致谢的地方外，本{\hainnu@type}中没有抄袭他人研究成果和伪造数据等行为。与我一同工作的同志对本研究所做的任何贡献均已在{\hainnu@type}中作了明确的说明并表示谢意。
+	    }
+	    \newcommand{\hainnu@authorization}{%
+	    	海南师范大学有权保留并向国家有关部门或机构送交毕业{\hainnu@type}的复印件和磁盘，允许毕业{\hainnu@type}被查阅和借阅。本人授权海南师范大学可以将本毕业{\hainnu@type}的全部或部分内容编入有关数据库进行检索，可以采用影印、缩印或其他复印手段保存、汇编毕业{\hainnu@type}。
+	    }
+	    \newcommand\make@authorization{%
+	    	\pagenumbering{roman}
+	    	\cleardoublepage
+	    	\begin{center}\zihao{3}\bfseries{\heiti{本科生毕业{\hainnu@type}原创性声明}}\end{center}
+	    	\vspace{28pt}
+	    	\par{\fangsong{\hainnu@declaretext}}\par
+	    	\vskip1.0cm
+	    	{\begin{tabular}{p{8cm}p{6cm}}\fangsong
+	    			{\hainnu@type}作者签名：\underline{\makebox[30mm]{\quad}} & \fangsong 日期：\underline{\makebox[30mm]{\quad}}
+	    	\end{tabular}}
+	    	\vskip2.0cm
+	    	\begin{center}\zihao{3}\bfseries{\heiti{本科生毕业{\hainnu@type}使用授权声明}}\end{center}
+	    	\vspace{28pt}
+	    	\par{\fangsong{\hainnu@authorization}}\par
+	    	\vskip1.0cm
+	    	{\renewcommand{\arraystretch}{2.0}%行高
+	    		\begin{tabular}{p{8cm}p{6cm}}\fangsong
+	    			{\hainnu@type}作者签名：\underline{\makebox[30mm]{\quad}} & \fangsong 日期：\underline{\makebox[30mm]{\quad}} \\
+	    			\fangsong 指导教师签名：\underline{\makebox[30mm]{\quad}} & \fangsong 日期：\underline{\makebox[30mm]{\quad}}
+	    	\end{tabular}}
+	    }
+    \make@authorization
+    \fi
 }
 %
 
 
 %
+\newcommand{\makecntitle}{%
+	\begin{center}
+		\zihao{3}{\textbf{\hainnu@title}}\\
+		\vspace{0.5cm}
+		\zihao{4}{\fangsong 作者: \hainnu@author \quad 指导教师: \hainnu@supervisor~~\hainnu@acadetitle}\\
+		\zihao{-4}{(\hainnu@corresaddr)}
+	\end{center}
+}
+\newcommand{\makeentitle}{%
+	\begin{center}
+		\zihao{3}{\textbf{\hainnu@etitle}}\\
+		\blankline{-4}
+		\zihao{-4}{Author: \hainnu@eauthor \quad 
+			Supervisor: \hainnu@eacadetitle~\hainnu@esupervisor}\\
+		\zihao{-4}{(\hainnu@ecorresaddr)}
+	\end{center}
+}
 %% ==== Abstract Environment
 \RequirePackage[inline]{enumitem}
 \def\c@abstractname{摘\hspace{2\ccwd}要}
 \def\e@abstractname{Abstract}
-\NewDocumentCommand { \abstract } { o }
+\NewDocumentCommand { \abstract } { o+m }
 {%
-    \cleardoublepage
-    \phantomsection
-    \addcontentsline{toc}{chapter}{\IfNoValueTF{#1}{中文摘要}{英文摘要}}
-    \mbox{}
-    \par\vspace{\baselineskip}
-    \noindent
-    \makebox[\textwidth][c]{%
-        \zihao{-3}\IfNoValueTF{#1}{\heiti\c@abstractname}{\bfseries\e@abstractname}}
-    \par\vspace{\baselineskip}
+	\if@hainnuthesis@master
+	    \cleardoublepage
+	    \phantomsection
+	    \addcontentsline{toc}{chapter}{\IfNoValueTF{#1}{中文摘要}{英文摘要}}
+	    \mbox{}
+	    \par\vspace{\baselineskip}
+	    \noindent
+	    \makebox[\textwidth][c]{%
+	        \zihao{-3}\IfNoValueTF{#1}{\heiti\c@abstractname}{\bfseries\e@abstractname}}
+	    \par\vspace{\baselineskip}#2
+    \else
+   		{\noindent\fangsong\IfNoValueTF{#1}{\textbf{摘\hspace{10pt}要：}#2}{\textbf{\e@abstractname: }#2}}
+   	\fi
 }
 % ---- innovation
 \NewDocumentEnvironment { inovation } { o +m } {%
@@ -357,13 +538,17 @@ AutoFakeBold=1.5
 }{\end{enumerate*}}
 % ---- \keywords
 \NewDocumentCommand { \keywords } { o +m } {%
-    \par\vspace{\baselineskip}
-    \textbf{\IfNoValueTF{#1}{关键词：}{#1:~}}#2
+	\if@hainnuthesis@master
+	    \par\vspace{\baselineskip}
+	    \textbf{\IfNoValueTF{#1}{关键词：}{#1:~}}#2
+    \else
+    	{\par\noindent\fangsong\textbf{\IfNoValueTF{#1}{关键词：}{Key words: }}#2}
+    \fi
 }
 
 %% Command for create special chapters
 \NewDocumentCommand\special@chapter%
-{ s m O{\zihao{3}\heiti} m m m O{}}%
+{ s m O{\zihao{3}\heiti} m m m O{\renewcommand{\theequation}{\thechapter.\arabic{equation}}}}%
 {\csdef{#2}{%
 \cleardoublepage%
 \phantomsection%
@@ -459,56 +644,119 @@ AutoFakeBold=1.5
 \RequirePackage{natbib}
 \setlength{\bibsep}{0pt}
 \renewcommand{\bibsection}{}
-%
+
 %% ==== ToC
-\renewcommand\contentsname{目\hspace{2\ccwd}录}
-\renewcommand{\tableofcontents}{%
-    \cleardoublepage\thispagestyle{plain}
-    \phantomsection\addcontentsline{toc}{chapter}{\contentsname}
-    \mbox{}\\[\baselineskip]%
-    \noindent\makebox[\textwidth][c]{\zihao{-2}\heiti\contentsname}
-    \par\vspace{\baselineskip}
-    \@starttoc{toc}
-}
+\if@hainnuthesis@master
+	\renewcommand\contentsname{目\hspace{2\ccwd}录}
+	\renewcommand{\tableofcontents}{%
+		\cleardoublepage\thispagestyle{plain}
+		\phantomsection\addcontentsline{toc}{chapter}{\contentsname}
+		\mbox{}\\[\baselineskip]%
+		\noindent\makebox[\textwidth][c]{\zihao{-2}\heiti\contentsname}
+		\par\vspace{\baselineskip}
+		\@starttoc{toc}
+	}
+\else
+	\renewcommand\contentsname{\kaishu \bfseries\zihao{2}目\hspace{2\ccwd}录}
+	\renewcommand{\tableofcontents}{%
+		\cleardoublepage\thispagestyle{plain}
+		\phantomsection\addcontentsline{toc}{chapter}{\textbf{目\hspace{2\ccwd}录}}
+		\mbox{}\\[\baselineskip]%
+		\noindent\makebox[\textwidth][c]{\zihao{5}\heiti\contentsname}
+		\par\vspace{\baselineskip}
+		\@starttoc{toc}
+	}
+\fi
+
+
 
 \RequirePackage{titletoc}
 \contentsmargin{0pt}
 
-\if@hainnuthesis@arabictitlenum
-	\titlecontents{chapter}
-	[0pt]
-	{\bfseries\zihao{-4}}
-	{\makebox[4.3em][s]{\thecontentslabel}\hspace*{1em}}%调整目录章节编号大概为4个字符
-	{}
-	{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
-	%[\nointerlineskip]
-	
-	\titlecontents{section}
-	[0pt]
-	{\zihao{-4}\hspace{2\ccwd}}
-	{\thecontentslabel\hspace*{1em}}
-	{}
-	{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
-	[\nointerlineskip]
-	
-\else
-	\titlecontents{chapter}
-	[0pt]
-	{\bfseries\zihao{-4}}
-	{\makebox[5.3em][s]{\thecontentslabel}}%调整目录章节编号大概为4个字符
-	{}
-	{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
-	
-	\titlecontents{section}
-	[0pt]
-	{\zihao{-4}\hspace{2\ccwd}}
-	{\thecontentslabel}
-	{}
-	{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
-	[\nointerlineskip]
+\if@hainnuthesis@master
+	\if@hainnuthesis@arabictitlenum
+		\titlecontents{chapter}
+		[0pt]
+		{\bfseries\zihao{-4}}
+		{\makebox[4.3em][s]{\thecontentslabel}\hspace*{1em}}%调整目录章节编号大概为4个字符
+		{}
+		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+		%[\nointerlineskip]
+		
+		\titlecontents{section}
+		[0pt]
+		{\zihao{-4}\hspace{2\ccwd}}
+		{\thecontentslabel\hspace*{1em}}
+		{}
+		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+		[\nointerlineskip]
+		
+	\else
+		\titlecontents{chapter}
+		[0pt]
+		{\bfseries\zihao{-4}}
+		{\makebox[5.3em][s]{\thecontentslabel}}%调整目录章节编号大概为4个字符
+		{}
+		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+		
+		\titlecontents{section}
+		[0pt]
+		{\zihao{-4}\hspace{2\ccwd}}
+		{\thecontentslabel}
+		{}
+		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+		[\nointerlineskip]
+	\fi
+\else			%本科
+	\if@hainnuthesis@arabictitlenum
+		\titlecontents{chapter}
+		[0pt]
+		{\bfseries\zihao{4}}
+		{\makebox[4.3em][s]{\thecontentslabel}\hspace*{1em}}%调整目录章节编号大概为4个字符
+		{}
+		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+		%[\nointerlineskip]
+		
+		\titlecontents{section}
+		[0pt]
+		{\bfseries\zihao{4}\hspace{2\ccwd}}
+		{\thecontentslabel\hspace*{1em}}
+		{}
+		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+		[\nointerlineskip]
+		
+		\titlecontents{subsection}
+		[0pt]
+		{\bfseries\zihao{4}\hspace{2\ccwd}}
+		{\hspace*{2em}\thecontentslabel\hspace*{1em}}
+		{}
+		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+		[\nointerlineskip]
+	\else
+		\titlecontents{chapter}
+		[0pt]
+		{\bfseries\zihao{4}}
+		{\makebox[5.3em][s]{\thecontentslabel}}%调整目录章节编号大概为4个字符
+		{}
+		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+		
+		\titlecontents{section}
+		[0pt]
+		{\bfseries\zihao{4}\hspace{2\ccwd}}
+		{\thecontentslabel}
+		{}
+		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+		[\nointerlineskip]
+		
+		\titlecontents{subsection}
+		[0pt]
+		{\bfseries\zihao{4}\hspace{2\ccwd}}
+		{\hspace*{2em}\thecontentslabel\hspace*{1em}}
+		{}
+		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+		[\nointerlineskip]
+	\fi
 \fi
-
-
 %
 
 %% 公式编号

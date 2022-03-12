@@ -1,0 +1,121 @@
+% !TeX encoding = UTF-8
+% !TeX program = xelatex
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%%        人文社科大类章节编号用中文，
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%\documentclass[chinesetitlenum,bachelor]{hainnuthesis}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%%        理工科大类章节编号用数字，
+%%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\documentclass[arabictitlenum,bachelor]{hainnuthesis}
+
+%% 随机文本(测试使用)
+\usepackage{lipsum,zhlipsum}
+
+%% 超链接设定
+\usepackage[colorlinks,
+linkcolor=black,
+anchorcolor=blue,
+citecolor=blue]{hyperref}
+
+
+%%你可以在下面的文件中添加自己常用的宏定义，简化命令的使用
+\input{Settings/UserTextDef}
+%
+%数学公式写作定义
+\input{Settings/UserMathDef}
+
+%导入代码设置
+\input{Settings/UserAlgrCode}
+
+%导入图片文件夹
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 海南师范大学的logo图片在logoimage中，不要把其他图片放入logoimage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%请将你自己的图片在文件夹figures与images中
+\graphicspath{{logoimage/}{images/}{figures/}}
+
+
+
+%% ==== 毕业论文信息输入
+\hainnuset{%
+	% -- 中文信息                        % 论文题目↓↓↓
+	title         = {使用{\LaTeX{}}模板的毕业论文撰写手册},
+	studentid     = {2019xxxxx},        % 作者学号
+	author        = {张三},              % 作者姓名
+	class		  = {2019},
+	department	  = {信息科学技术学院},
+	major		  = {计算机科学与技术},
+	supervisor    = {李四},              % 指导教师姓名
+	acadetitle    = {副教授},              % 导师学术头衔
+	submitdate    = {二〇二〇年四月廿四日}, % 论文提交日期
+	corresaddr    = {海南师范大学信息科学技术学院，海口 571158},  % 通信地址s
+	type		  = {设计},	%文档类型：论文/设计
+	% -- 英文信息                        % 论文题目(英文)↓↓↓
+	etitle        = {User Manual of the \LaTeX{} Template for the BS Thesis},
+	eauthor       = {San ZHANG},                % 作者姓名(英文)
+	esupervisor   = {Si LI},         % 导师姓名(英文)
+	eacadetitle   = {Associate Prof.},         % 导师学术头衔(英文)
+	ecorresaddr= {School of Information Science and Technology, \\Hainan Normal University, Haikou 571158, P. R. China},
+}
+
+\begin{document}
+	%\include{contents}
+	%%==================================%%
+	%%             封    面             %%
+	%%==================================%%
+	% 自动生成封面，无需改动
+	\maketitle
+	\frontmatter
+	
+	%%==================================%%
+	%%             目    录             %%
+	%%==================================%%
+	% 自动生成目录，无需改动
+	\tableofcontents
+	
+	%%==================================%%
+	%%             摘    要             %%
+	%%==================================%%
+	\include{chapters/Abstract-BS}
+	\mainmatter
+	
+	%%==================================%%
+	%%            序     文            %%
+	%%==================================%%
+	\include{chapters/Preface}
+	
+	%%==================================%%
+	%%            正     文            %%
+	%%==================================%%
+	% 标题前的章节序号可以自由输入希望的格式，也可以省略
+	\include{chapters/Introduction}
+	\include{chapters/UserManual}
+	
+	%%==================================%%
+	%%             附    录             %%
+	%%==================================%%
+	\include{chapters/Appendices}
+	
+	%%****************************************
+	%%  参考文献
+	%%****************************************
+	% 按照国家标准生成参考文献，采用数字编号进行排序
+	
+	
+	\bibliographystyle{gbt7714-numerical}
+	\reference\nointerlineskip
+	{\zihao{5}\fangsong
+	\begin{spacing}{1.2}
+	\bibliography{BibTeX/BibTest}
+	\end{spacing}
+	}
+	%%==================================%%
+	%%             致    谢             %%
+	%%==================================%%
+	\include{chapters/Acknowledgement}
+	
+	
+\end{document}
