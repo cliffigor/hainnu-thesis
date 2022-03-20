@@ -179,6 +179,10 @@ headsep=0.5cm
 \RequirePackage{booktabs}%
 \RequirePackage{longtable}%
 \RequirePackage{tabularx}%
+\RequirePackage{longtable}    % 用于表格跨页，支持添加表头
+\RequirePackage{supertabular} % 用于表格跨页，不支持添加表头
+\RequirePackage{lscape} % 用于横向放置表格
+
 \def\tabularxcolumn#1{m{#1}}
 % 行间距
 \RequirePackage{setspace}
