@@ -695,6 +695,13 @@ AutoFakeBold=1.5
 		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
 		[\nointerlineskip]
 		
+		\titlecontents{subsection}
+		[0pt]
+		{\zihao{-4}\hspace{4\ccwd}}
+		{\thecontentslabel\hspace*{1em}}
+		{}
+		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+		[\nointerlineskip]
 	\else
 		\titlecontents{chapter}
 		[0pt]
@@ -707,6 +714,14 @@ AutoFakeBold=1.5
 		[0pt]
 		{\zihao{-4}\hspace{2\ccwd}}
 		{\thecontentslabel}
+		{}
+		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
+		[\nointerlineskip]
+		
+		\titlecontents{subsection}
+		[0pt]
+		{\zihao{-4}\hspace{4\ccwd}}
+		{\thecontentslabel\hspace*{1em}}
 		{}
 		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
 		[\nointerlineskip]
