@@ -15,6 +15,8 @@
 \DeclareComplementaryOption{chinesetitlenum}{arabictitlenum}  % automatically inverses the former
 \DeclareBoolOption[true]{academdegree}       % automatically creates \ifmypackage@fullpage
 \DeclareComplementaryOption{profesdegree}{academdegree}  % automatically inverses the former
+\DeclareBoolOption[true]{final}       % automatically creates \ifmypackage@fullpage
+\DeclareComplementaryOption{drafts}{final}  % automatically inverses the former
 \ProcessKeyvalOptions*{}
 \if@hainnuthesis@master
 	\if@hainnuthesis@arabictitlenum
@@ -188,7 +190,8 @@ headsep=0.5cm
 \RequirePackage{setspace}
 % 程序代码环境
 \RequirePackage{listings} 
-
+% 审阅时行号
+\RequirePackage[mathlines]{lineno} 
 %Tikz绘图工具包
 \RequirePackage{tikz}
 \usetikzlibrary{arrows,math,calc,topaths,positioning,automata,shapes,chains}
@@ -518,6 +521,10 @@ AutoFakeBold=1.5
 \def\e@abstractname{Abstract}
 \NewDocumentCommand { \abstract } { o+m }
 {%
+	\if@hainnuthesis@final
+	\else
+	\linenumbers
+	\fi
 	\if@hainnuthesis@master
 	    \cleardoublepage
 	    \phantomsection
