@@ -35,39 +35,39 @@
 \section{封面选择}
 
 \subsection{本科生毕业设计或学位论文}
-在\verb|main-BS.tex|文档中, 请在文档类型中进行设置。本科生授予的学位是学士，英文单词为
+在\lstinline|main-BS.tex|文档中, 请在文档类型中进行设置。本科生授予的学位是学士，英文单词为
 bachelor。
 \begin{itemize}
 \item 人文社科大类章节编号用中文,设置如下:\\
-      \verb|\documentclass[chinesetitlenum,bachelor]{hainnuthesis}|
+      \lstinline|\documentclass[chinesetitlenum,bachelor]{hainnuthesis}|
 \item 理工科大类章节编号用数字，设置如下:\\
-      \verb|\documentclass[arabictitlenum,bachelor]{hainnuthesis}|
+      \lstinline|\documentclass[arabictitlenum,bachelor]{hainnuthesis}|
 \end{itemize}
 
 \subsection{硕士与博士研究生学位论文}
 
 \subsubsection{专业型学位论文与学术型学位论文}
 
-专业型学位(例如电子信息专业硕士)与学术型学位(例如网络空间安全学术硕士)所采用的封面并不相同，你需要自己选择，这通过文档类型参数\verb|profesdegree|与\verb|academdegree|进行控制。
+专业型学位(例如电子信息专业硕士)与学术型学位(例如网络空间安全学术硕士)所采用的封面并不相同，你需要自己选择，这通过文档类型参数\lstinline|profesdegree|与\lstinline|academdegree|进行控制。
 \begin{itemize}
 \item 专业型学位，采用的设置如下:
 	\begin{itemize}
 	\item 理工大类请看profesdegree参数:\\
-	  \verb|\documentclass[profesdegree,chinesetitlenum]{hainnuthesis}|
+	  \lstinline|\documentclass[profesdegree,chinesetitlenum]{hainnuthesis}|
 	\item 人文社科请看profesdegree参数:\\
-	 \verb|\documentclass[profesdegree,arabictitlenum]{hainnuthesis}|
+	 \lstinline|\documentclass[profesdegree,arabictitlenum]{hainnuthesis}|
 	\end{itemize} 
 \item 学术型学位，采用的设置如下:
 	\begin{itemize}
 	\item 理工大类请看academdegree参数:\\
-	 \verb|\documentclass[academdegree,chinesetitlenum]{hainnuthesis}|
+	 \lstinline|\documentclass[academdegree,chinesetitlenum]{hainnuthesis}|
 	\item 人文社科请看academdegree参数:\\
-	 \verb|\documentclass[academdegree,arabictitlenum]{hainnuthesis}|
+	 \lstinline|\documentclass[academdegree,arabictitlenum]{hainnuthesis}|
 	\end{itemize} 
 \end{itemize}
 
 \subsubsection{硕士论文与博士论文}
-硕士与博士学位论文，在学位论文信息输入的参数设定列表中，利用\verb|degreelevel|
+硕士与博士学位论文，在学位论文信息输入的参数设定列表中，利用\lstinline|degreelevel|
 进行区分，如果是硕士则填写“硕士”，如果是博士则填写“博士” 
 
 
@@ -101,25 +101,25 @@ bachelor。
 \item 人文社科类编号, 可以按照如下方式设定:
      \begin{itemize}
      \item 专业型学位请看chinesetitlenum参数: \\
-     \verb|\documentclass[profesdegree,chinesetitlenum]{hainnuthesis}|
+     \lstinline|\documentclass[profesdegree,chinesetitlenum]{hainnuthesis}|
      \item 学术型学位请看chinesetitlenum参数: \\
-     \verb|\documentclass[academdegree,chinesetitlenum]{hainnuthesis}|
+     \lstinline|\documentclass[academdegree,chinesetitlenum]{hainnuthesis}|
      \end{itemize}
 \item 理工科科类编号, 可以按照如下方式设定:
      \begin{itemize}
      \item 专业型学位,请看arabictitlenum参数: \\
-     \verb|\documentclass[arabictitlenum,profesdegree]{hainnuthesis}|
+     \lstinline|\documentclass[arabictitlenum,profesdegree]{hainnuthesis}|
      \item 学术型学位,请看arabictitlenum参数:\\
-      \verb|\documentclass[arabictitlenum,academdegree]{hainnuthesis}|
+      \lstinline|\documentclass[arabictitlenum,academdegree]{hainnuthesis}|
      \end{itemize}
 \end{itemize}
 这个采用参数arabictitlenum与chinesetitlenum控制章节编号风格的解决方案是由滴滴研
 究院的工程师王子昊实现的，感谢他的帮助！
 
-如果你对编号细节不满意，可以手动修改格式控制文件\verb|hainnuthesis.cls|中相应的地方，其它地方不要随意改动，免得发生错误自己难以控制。
+如果你对编号细节不满意，可以手动修改格式控制文件\lstinline|hainnuthesis.cls|中相应的地方，其它地方不要随意改动，免得发生错误自己难以控制。
 
 \section{审阅时添加行号}
-你可以给文档带上\verb|[drafts]|选项，这会给文档加上行号，方便在审阅的时候找到问题的具体位置，方便自己，方便他人！
+你可以给文档带上\lstinline|[drafts]|选项，这会给文档加上行号，方便在审阅的时候找到问题的具体位置，方便自己，方便他人！
 
 
 \section{数学环境实例}
@@ -486,7 +486,7 @@ $$
 
 \subsection{表格横置}
 
-有时候表格太宽了，需要横向放置，可以采用\verb|\usepackage{lscape}|并配合命令
+有时候表格太宽了，需要横向放置，可以采用\lstinline|\usepackage{lscape}|并配合命令
 \begin{verbatim}
 	\begin{landscape}
 		% your table here
@@ -600,7 +600,7 @@ $$
 \end{lstlisting}
 
 \subsection{将整个源代码文件导入\LaTeX{}文档中}
-你可以使用\verb*|\lstinputlisting{}|命令将程序的源代码导入\LaTeX 文档，这样就免除了复制操作可能带来的错误。
+你可以使用\lstinline|\lstinputlisting{}|命令将程序的源代码导入\LaTeX 文档，这样就免除了复制操作可能带来的错误。
 
 \textbf{\textcolor[rgb]{0.98,0,0}{Input Python source:}}
 \lstinputlisting[language=Python,frame=shadowbox]{code/example.py}
@@ -664,7 +664,7 @@ $$
 
 \section{参考文献使用示例}
 
-对于论文的写作而言，文献的引用无疑是非常重要的。言之有理，言之有据，这是基本的要求。文献引用，需要使用命令\verb|\cite|与文献条码标签。在中国大陆地区，有参考文献的国家标准，即GB/T 7714, 请你注意这个标准。本模板采用的参考文献格式复合这个标准，是自动利用BibTeX文件自动生成的, 这得感谢开发gbt7714宏包的作者与维护者们! 这里有几种不同类型的参考文献:
+对于论文的写作而言，文献的引用无疑是非常重要的。言之有理，言之有据，这是基本的要求。文献引用，需要使用命令\lstinline|\cite|与文献条码标签。在中国大陆地区，有参考文献的国家标准，即GB/T 7714, 请你注意这个标准。本模板采用的参考文献格式复合这个标准，是自动利用BibTeX文件自动生成的, 这得感谢开发gbt7714宏包的作者与维护者们! 这里有几种不同类型的参考文献:
 
 \begin{itemize}
 \item[\ding{172}] 期刊论文, 例如\cite{XmDeng2007,Brown1984,ZHY2017RS,ZHY2012manifold}以及\cite{Wing2006CT}

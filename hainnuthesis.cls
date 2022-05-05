@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{hainnuthesis}[2021/11/03 Thesis Template for Hainan Normal University]
 
-\LoadClass[UTF8,fontset=none,zihao=-4,linespread=1.42]{ctexbook}
+\LoadClass{book}
 %文档选项
 \RequirePackage{kvoptions}
 
@@ -18,8 +18,11 @@
 \DeclareBoolOption[true]{final}       % automatically creates \ifmypackage@fullpage
 \DeclareComplementaryOption{drafts}{final}  % automatically inverses the former
 \ProcessKeyvalOptions*{}
+
+\RequirePackage[UTF8,heading=true,linespread=1.42,zihao=-4]{ctex}
+
 \if@hainnuthesis@master
-	\if@hainnuthesis@arabictitlenum
+	\if@hainnuthesis@arabictitlenum	%硕士数字序号
 		\ctexset{%
 			chapter={%
 				pagestyle=hainnu@headings,
@@ -47,7 +50,7 @@
 				aftername={\quad}
 			}
 		}
-	\else
+	\else			%硕士中文序号
 		\ctexset{%
 			chapter={%
 				pagestyle=hainnu@headings,
@@ -76,11 +79,11 @@
 		}
 	\fi
 \else				%本科
-	\if@hainnuthesis@arabictitlenum
+	\if@hainnuthesis@arabictitlenum		%本科数字序号
 	\ctexset{%
 		chapter={%
 			pagestyle=hainnu@headings,
-			format=\centering\zihao{3}\bfseries,
+			format=\centering\bfseries\zihao{3},
 			number={\thechapter},
 			name={第,章},
 			aftername={\quad},
@@ -93,19 +96,21 @@
 			number={\thesection},
 			name={},
 			aftername={\quad},
-			afterskip=0.45cm,
-			beforeskip=0.45cm,
+			fixskip=true,
+			afterskip=0.55cm,
+			beforeskip=0.55cm,
 		},
 		subsection={% 四号字体 
 			format=\bfseries\zihao{4},
-			afterskip=0.35cm,
 			number={\thesubsection},
 			name={},
 			aftername={\quad},
-			beforeskip=0.35cm
-		}
+			fixskip=true,
+			afterskip=0.45cm,
+			beforeskip=0.45cm,
+		},
 	}
-	\else
+	\else		%本科中文序号
 	\ctexset{%
 		chapter={%
 			pagestyle=hainnu@headings,
@@ -123,17 +128,19 @@
 			number={\chinese{section}},
 			name={第,节\quad},
 			aftername={},
+			fixskip=true,
 			afterskip=0.45cm,
 			beforeskip=0.45cm
 		},
 		subsection={% 四号字体 
 			format=\bfseries\zihao{4},
-			afterskip=0.35cm,
 			number={\chinese{subsection}},
 			name={第,小节\quad},
-			beforeskip=0.35cm
+			fixskip=true,
+			afterskip=0.35cm,
+			beforeskip=0.35cm,
 		}
-	}
+}
 	\fi
 \fi
 \newlength\twolineskip
@@ -215,33 +222,17 @@ headsep=0.5cm
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 %字体设置
-\RequirePackage{newtxtext,newtxmath}
+\RequirePackage{newtxmath}
 \RequirePackage{xeCJKfntef}
 \RequirePackage{fontspec}
+\setmainfont{Times New Roman}
 
-\newCJKfontfamily{\songti}{simsun.ttc}[%
-Path={./fonts/},
-UprightFont = *,
-AutoFakeBold=2.5
-]
+% 超链接设定
+\usepackage[colorlinks,
+linkcolor=black,
+anchorcolor=blue,
+citecolor=blue]{hyperref}
 
-\newCJKfontfamily{\heiti}{simhei.ttf}[%
-Path={./fonts/},
-UprightFont = *,
-AutoFakeBold=1.5
-]
-
-\newCJKfontfamily{\fangsong}{simfang.ttf}[%
-Path={./fonts/},
-UprightFont = *,
-AutoFakeBold=1.5
-]
-
-\newCJKfontfamily{\kaishu}{simkai.ttf}[%
-Path={./fonts/},
-UprightFont = *,
-AutoFakeBold=1.5
-]
 %页眉设置
 \RequirePackage{fancyhdr}
 \if@hainnuthesis@arabictitlenum
