@@ -93,15 +93,16 @@
 			number={\thesection},
 			name={},
 			aftername={\quad},
-			beforeskip=0pt,
-			afterskip=0pt
+			afterskip=0.45cm,
+			beforeskip=0.45cm,
 		},
 		subsection={% 四号字体 
 			format=\bfseries\zihao{4},
-			afterskip=0pt,
+			afterskip=0.35cm,
 			number={\thesubsection},
 			name={},
-			aftername={\quad}
+			aftername={\quad},
+			beforeskip=0.35cm
 		}
 	}
 	\else
@@ -115,20 +116,22 @@
 			fixskip=true,
 			beforeskip=1.4cm,
 			afterskip=1.0cm,
+			beforeskip=0.35cm
 		},
 		section={% 三号字体
 			format=\zihao{-3}\bfseries,
 			number={\chinese{section}},
 			name={第,节\quad},
 			aftername={},
-			beforeskip=0pt,
-			afterskip=0pt
+			afterskip=0.45cm,
+			beforeskip=0.45cm
 		},
 		subsection={% 四号字体 
 			format=\bfseries\zihao{4},
-			afterskip=0pt,
+			afterskip=0.35cm,
 			number={\chinese{subsection}},
 			name={第,小节\quad},
+			beforeskip=0.35cm
 		}
 	}
 	\fi
@@ -217,25 +220,25 @@ headsep=0.5cm
 \RequirePackage{fontspec}
 
 \newCJKfontfamily{\songti}{simsun.ttc}[%
-%Path={./fonts/},
+Path={./fonts/},
 UprightFont = *,
 AutoFakeBold=2.5
 ]
 
 \newCJKfontfamily{\heiti}{simhei.ttf}[%
-%Path={./fonts/},
+Path={./fonts/},
 UprightFont = *,
 AutoFakeBold=1.5
 ]
 
 \newCJKfontfamily{\fangsong}{simfang.ttf}[%
-%Path={./fonts/},
+Path={./fonts/},
 UprightFont = *,
 AutoFakeBold=1.5
 ]
 
 \newCJKfontfamily{\kaishu}{simkai.ttf}[%
-%Path={./fonts/},
+Path={./fonts/},
 UprightFont = *,
 AutoFakeBold=1.5
 ]
@@ -262,7 +265,7 @@ AutoFakeBold=1.5
 \renewcommand\frontmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi
     \@mainmatterfalse
-    \pagenumbering{Roman}
+    \pagenumbering{roman}
     \pagestyle{plain}}
 \renewcommand\mainmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi
