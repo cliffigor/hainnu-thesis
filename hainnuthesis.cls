@@ -19,14 +19,15 @@
 \DeclareComplementaryOption{drafts}{final}  % automatically inverses the former
 \ProcessKeyvalOptions*{}
 
-\RequirePackage[UTF8,heading=true,linespread=1.42,zihao=-4]{ctex}
+\RequirePackage[UTF8,heading=true,linespread=1.42,zihao=-4,fontset=none]{ctex}
+
 
 \if@hainnuthesis@master
 	\if@hainnuthesis@arabictitlenum	%硕士数字序号
 		\ctexset{%
 			chapter={%
 				pagestyle=hainnu@headings,
-				format=\centering\heiti\zihao{3},
+				format=\centering\bfseries\heiti\zihao{3},
 				number={\thechapter},
 				name={第,章},
 				aftername={\quad},
@@ -35,26 +36,27 @@
 				afterskip=1.0cm,
 			},
 			section={% 四号字体
-				format=\raggedright\heiti\zihao{4}\hspace{8mm},
+				format=\raggedright\bfseries\heiti\zihao{4}\hspace{0mm},
 				number={\thesection},
 				name={},
 				aftername={\quad},
-				beforeskip=0pt,
-				afterskip=0pt
+				beforeskip=0.2cm,
+				afterskip=0.2cm
 			},
 			subsection={% 小四号字体 
-				format=\raggedright\bfseries\heiti\zihao{-4}\hspace{2\ccwd},
-				afterskip=0pt,
+				format=\raggedright\bfseries\heiti\zihao{-4}\hspace{0mm},
 				number={\thesubsection},
 				name={},
-				aftername={\quad}
+				aftername={\quad},
+				beforeskip=0.2cm,
+				afterskip=0.2cm
 			}
 		}
 	\else			%硕士中文序号
 		\ctexset{%
 			chapter={%
 				pagestyle=hainnu@headings,
-				format=\centering\heiti\zihao{3},
+				format=\centering\bfseries\heiti\zihao{3},
 				number={\chinese{chapter}},
 				name={第,章\quad},
 				aftername={},
@@ -63,18 +65,19 @@
 				afterskip=1.0cm,
 			},
 			section={% 四号字体
-				format=\raggedright\heiti\zihao{4}\hspace{8mm},
+				format=\raggedright\bfseries\heiti\zihao{4}\hspace{0mm},
 				number={\chinese{section}},
 				name={第,节\quad},
 				aftername={},
-				beforeskip=0pt,
-				afterskip=0pt
+				beforeskip=0.2cm,
+				afterskip=0.2cm
 			},
 			subsection={% 小四号字体 
-				format=\raggedright\bfseries\heiti\zihao{-4}\hspace{2\ccwd},
-				afterskip=0pt,
+				format=\raggedright\bfseries\heiti\zihao{-4}\hspace{0mm},
 				number={\chinese{subsection}},
 				name={第,小节\quad},
+				beforeskip=0.2cm,
+				afterskip=0.2cm
 			}
 		}
 	\fi
@@ -96,18 +99,16 @@
 			number={\thesection},
 			name={},
 			aftername={\quad},
-			fixskip=true,
-			afterskip=0.55cm,
-			beforeskip=0.55cm,
+			afterskip=0.2cm,
+			beforeskip=0.2cm,
 		},
 		subsection={% 四号字体 
 			format=\bfseries\zihao{4},
 			number={\thesubsection},
 			name={},
 			aftername={\quad},
-			fixskip=true,
-			afterskip=0.45cm,
-			beforeskip=0.45cm,
+			afterskip=0.2cm,
+			beforeskip=0.2cm,
 		},
 	}
 	\else		%本科中文序号
@@ -121,24 +122,21 @@
 			fixskip=true,
 			beforeskip=1.4cm,
 			afterskip=1.0cm,
-			beforeskip=0.35cm
 		},
 		section={% 三号字体
 			format=\zihao{-3}\bfseries,
 			number={\chinese{section}},
 			name={第,节\quad},
 			aftername={},
-			fixskip=true,
-			afterskip=0.45cm,
-			beforeskip=0.45cm
+			afterskip=0.2cm,
+			beforeskip=0.2cm,
 		},
 		subsection={% 四号字体 
 			format=\bfseries\zihao{4},
 			number={\chinese{subsection}},
 			name={第,小节\quad},
-			fixskip=true,
-			afterskip=0.35cm,
-			beforeskip=0.35cm,
+			afterskip=0.2cm,
+			beforeskip=0.2cm,
 		}
 }
 	\fi
@@ -226,6 +224,29 @@ headsep=0.5cm
 \RequirePackage{xeCJKfntef}
 \RequirePackage{fontspec}
 \setmainfont{Times New Roman}
+\newCJKfontfamily{\songti}{simsun.ttc}[%
+%Path={./fonts/},
+UprightFont = *,
+AutoFakeBold=2.5
+]
+
+\newCJKfontfamily{\heiti}{simhei.ttf}[%
+%Path={./fonts/},
+UprightFont = *,
+AutoFakeBold=1.5
+]
+
+\newCJKfontfamily{\fangsong}{simfang.ttf}[%
+%Path={./fonts/},
+UprightFont = *,
+AutoFakeBold=1.5
+]
+
+\newCJKfontfamily{\kaishu}{simkai.ttf}[%
+%Path={./fonts/},
+UprightFont = *,
+AutoFakeBold=1.5
+]
 
 % 超链接设定
 \usepackage[colorlinks,
@@ -534,7 +555,7 @@ citecolor=blue]{hyperref}
    	\fi
 }
 % ---- innovation
-\NewDocumentEnvironment { inovation } { o +m } {%
+\NewDocumentEnvironment { innovation } { o +m } {%
     \par\vspace{\baselineskip}
     {\bfseries\IfNoValueTF{#1}{创新点：}{#1:}}
     \par
