@@ -28,7 +28,7 @@
 			chapter={%
 				pagestyle=hainnu@headings,
 				format=\centering\bfseries\heiti\zihao{3},
-				number={\thechapter},
+				number={\chinese{chapter}},
 				name={第,章},
 				aftername={\quad},
 				fixskip=true,
@@ -256,11 +256,8 @@ citecolor=blue]{hyperref}
 
 %页眉设置
 \RequirePackage{fancyhdr}
-\if@hainnuthesis@arabictitlenum
-	\renewcommand{\chaptermark}[1]{\markboth{第\,\thechapter \,章\quad #1}{}}
-\else
+
 	\renewcommand{\chaptermark}[1]{\markboth{第\,\chinese{chapter} \,章\quad #1}{}}
-\fi
 
 \fancypagestyle{hainnu@headings}{%
     \fancyhead{}
@@ -277,7 +274,11 @@ citecolor=blue]{hyperref}
 \renewcommand\frontmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi
     \@mainmatterfalse
-    \pagenumbering{roman}
+    \if@hainnuthesis@master
+    \pagenumbering{Roman}
+    \else
+     \pagenumbering{roman}
+    \fi
     \pagestyle{plain}}
 \renewcommand\mainmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi
@@ -337,6 +338,8 @@ citecolor=blue]{hyperref}
 \hainnu@define@key{ethesistype}   
 \hainnu@define@key{ecorresaddr}
 %% ==== Cover and titlepage
+\newcommand{\signatureimg}[1]{\includegraphics[height=0.6cm]{#1}}
+
 \renewcommand\maketitle{%
     \parindent=0pt
     \cleardoublepage\thispagestyle{empty}
