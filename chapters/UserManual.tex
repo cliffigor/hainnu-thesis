@@ -267,6 +267,10 @@ $$
 \end{corollary}
 
 
+\section{绘图工具的选择}
+
+绘图工具很多，你可以选择商用软件，例如Visio(通常是在Windows上使用)， 也可以是跨平台的开源绘图工具，例如小巧强大的drawio, 下载链接是\url{https://github.com/jgraph/drawio-desktop/releases}, 打开网页链接，选择你要的版本。相信你一定会喜欢它的!
+
 
 \section{流程图绘制}
 \subsection{使用Tikz绘制流程图}
@@ -451,7 +455,7 @@ $$
 \subsection{另一种跨页表格}
 表~\ref{tab5}~是另一种跨页表格，只不过没法在每一页都生成caption。
 
-\tablehead{\hline $x$ & $sinx$ & $5x^{2}+3x+3$ & $log_{10}x$ \\ \hline}
+\tablehead{\hline $x$ & $\sin x$ & $5x^{2}+3x+3$ & $\log_{10}x$ \\ \hline}
 \tablecaption{另一种跨页表格}
 \tabletail{\hline}
 \begin{center}
@@ -520,12 +524,12 @@ $$
 		\begin{longtable}{cm{4cm}ccp{4cm}c}
 		\caption{某个用于测试的表格} \label{tab4} \\
 		\hline
-		$x$ & $sinx$ & $cosx$ & $5x^{2}+3x+3$ & $log_{10}x$ & $3x+5$\\
+		$x$ & $\sin x$ & $\cos x$ & $5x^{2}+3x+3$ & $\log_{10}x$ & $3x+5$\\
 		\hline
 		\endfirsthead
 		\caption*{某个用于测试的表格(续)}\\
 		\hline
-		$x$ & $sinx$ & $cosx$ & $5x^{2}+3x+3$ & $log_{10}x$ & $3x+5$\\
+		$x$ & $\sin x$ & $\cos x$ & $5x^{2}+3x+3$ & $\log_{10}x$ & $3x+5$\\
 		\hline
 		\endhead
 		\hline
@@ -624,10 +628,28 @@ $$
 
 \subsection{算法与伪代码示例}
 
-算法~\ref{alg-1}~对于xxx来说是关键，其显著的特点是xxx, 
+算法~\ref{alg-while}~对于xxx来说是关键，其显著的特点是xxx, 
+
+算法~\ref{alg-for-do}~对于xxx来说是关键，其显著的特点是xxx, 
+
+\begin{breakablealgorithm}
+	\caption{如何使用for和do-while} \label{alg-for-do}
+	\begin{algorithmic}[1]  %每行显示行号
+		\Require 这段代码
+		\Ensure 使用for和do-while的方法
+		\Function{函数名}{参数列表}
+		\Repeat
+		\State 学习\LaTeX
+		\Until{Alive}
+		\For{$ i = 1, 2, ..., 7 $}
+		\State echo "今天是周\$i\ "
+		\EndFor
+		\EndFunction
+	\end{algorithmic}
+\end{breakablealgorithm}
 
 \begin{algorithm}[h]
-	\caption{如何使用while和if} \label{alg-1}
+	\caption{如何使用while和if} \label{alg-while}
 	\begin{algorithmic}[1]  %每行显示行号
 		\Require 这段代码
 		\Ensure 使用while和if的方法
@@ -643,23 +665,46 @@ $$
 	\end{algorithmic}
 \end{algorithm}
 
-算法~\ref{alg-2}~对于xxx来说是关键，其显著的特点是xxx, 
+算法~\ref{alg-switch}~对于xxx来说是关键，其显著的特点是可以自动跨页, 
+请注意下面两条指令
+\begin{itemize}
+\item \lstinline|\begin{breakablealgorithm}|
+\item \lstinline|\end{breakablealgorithm}|
+\end{itemize}
+的配对使用. 
 
 \begin{breakablealgorithm}
-	\caption{如何使用for和do-while} \label{alg-2}
-	\begin{algorithmic}[1]  %每行显示行号
-		\Require 这段代码
-		\Ensure 使用for和do-while的方法
-		\Function{函数名}{参数列表}
-		\Repeat
-		\State 学习\LaTeX
-		\Until{Alive}
-		\For{$ i = 1, 2, ..., 7 $}
-		\State echo "今天是周\$i\ "
-		\EndFor
-		\EndFunction
-	\end{algorithmic}
+\caption{Generate symbolic expression for the term $\abs{c_i}x^{p_i}$ without the sign of $c$} \label{alg-switch}
+\begin{algorithmic}[1]
+\Require Argument $c_i$ for the $i$-th coefficient , argument $p_i$ for the power index;
+\Ensure The string of characters for $\abs{c_i}x^{p_i}$; 
+\Function{GenSexprUsgnGeneralTerm}{\cpvar{var}, \cpvar{op}, $c_i$, $p_i$}
+\State $\cpvar{ucoef} \gets \abs{c_i}$;
+\Switch{$p_i$}
+\Case{$1$}  \quad // e.g.,  $c_ix^{p_i}$ is $\pm 3x$ or $\pm x$
+   \If{($\cpvar{uc}\neq 1$)} \quad // for $c_ix^{p_i}=\pm 3x$, print \cpvar{3x} for MATLAB/\LaTeX
+      \State \ProcName{Fprintf}(\cpvar{fp}, \lstinline|"%d%s",uc,var)|; 
+   \Else \quad // for $c_ix^{p_i}=\pm x$, print \cpvar{x} for MATLAB/\LaTeX
+       \State \ProcName{Fprintf}(\cpvar{fp}, \lstinline|"%s",var)|; 
+   \EndIf
+\EndCase
+\Case{$0$} \quad // e.g., for $c_ix^{p_i}=\pm 4$, print \cpvar{4} for MATLAB/\LaTeX
+   \State \ProcName{Fprintf}(\cpvar{fp}, \lstinline|"%d",uc)|;
+\EndCase
+\Default \quad // e.g.,  $c_ix^{p_i}$ is $\pm 4x^3$ or $\pm x^3$
+   \If{($\cpvar{uc}\neq 1$)} \quad // for $c_ix^{p_i}=\pm 4x^3$, print \lstinline|4x^{3}| for MATLAB/\LaTeX
+      \State \ProcName{Fprintf}(\cpvar{fp}, \lstinline|"%d%s%s{%d}"|, \cpvar{uc}, \cpvar{var}, \cpvar{op}, $p_i$);
+   \Else \quad // for the term  $c_ix^{p_i}=\pm x^3$, print \lstinline|x^{3}| for MATLAB/\LaTeX
+       \State \ProcName{Fprintf}(\cpvar{fp}, \lstinline|"%s%s{%d}"|, \cpvar{var}, \cpvar{op}, $p_i$);
+   \EndIf
+\EndDefault
+\EndSwitch
+\EndFunction
+\end{algorithmic}
 \end{breakablealgorithm}
+
+
+
 
 
 \section{参考文献使用示例}

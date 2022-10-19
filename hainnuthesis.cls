@@ -43,7 +43,7 @@
 				beforeskip=0.2cm,
 				afterskip=0.2cm
 			},
-			subsection={% 小四号字体 
+			subsection={% 小四号字体
 				format=\raggedright\bfseries\heiti\zihao{-4}\hspace{0mm},
 				number={\thesubsection},
 				name={},
@@ -72,7 +72,7 @@
 				beforeskip=0.2cm,
 				afterskip=0.2cm
 			},
-			subsection={% 小四号字体 
+			subsection={% 小四号字体
 				format=\raggedright\bfseries\heiti\zihao{-4}\hspace{0mm},
 				number={\chinese{subsection}},
 				name={第,小节\quad},
@@ -102,7 +102,7 @@
 			afterskip=0.2cm,
 			beforeskip=0.2cm,
 		},
-		subsection={% 四号字体 
+		subsection={% 四号字体
 			format=\bfseries\zihao{4},
 			number={\thesubsection},
 			name={},
@@ -131,7 +131,7 @@
 			afterskip=0.2cm,
 			beforeskip=0.2cm,
 		},
-		subsection={% 四号字体 
+		subsection={% 四号字体
 			format=\bfseries\zihao{4},
 			number={\chinese{subsection}},
 			name={第,小节\quad},
@@ -167,7 +167,8 @@ a4paper,
 hmargin=3.17cm,
 vmargin=2.54cm,
 headheight=\baselineskip,
-headsep=0.5cm
+headsep=0.5cm,
+footnotesep=28mm,
 ]{geometry}
 \else
 \RequirePackage{geometry}
@@ -193,13 +194,16 @@ headsep=0.5cm
 \RequirePackage{supertabular} % 用于表格跨页，不支持添加表头
 \RequirePackage{lscape} % 用于横向放置表格
 
+\captionsetup[figure]{labelsep=quad} % 去掉冒号
+\captionsetup[table]{labelsep=quad}  % 去掉冒号
+
 \def\tabularxcolumn#1{m{#1}}
 % 行间距
 \RequirePackage{setspace}
 % 程序代码环境
-\RequirePackage{listings} 
+\RequirePackage{listings}
 % 审阅时行号
-\RequirePackage[mathlines]{lineno} 
+\RequirePackage[mathlines]{lineno}
 %Tikz绘图工具包
 \RequirePackage{tikz}
 \usetikzlibrary{arrows,math,calc,topaths,positioning,automata,shapes,chains}
@@ -257,7 +261,8 @@ citecolor=blue]{hyperref}
 %页眉设置
 \RequirePackage{fancyhdr}
 
-	\renewcommand{\chaptermark}[1]{\markboth{第\,\chinese{chapter} \,章\quad #1}{}}
+%\renewcommand{\chaptermark}[1]{\markboth{第\,\chinese{chapter} \,章\quad #1}{}}
+\renewcommand{\chaptermark}[1]{\markboth{\chinese{chapter} \quad #1}{}}
 
 \fancypagestyle{hainnu@headings}{%
     \fancyhead{}
@@ -269,8 +274,9 @@ citecolor=blue]{hyperref}
     \fi
     \fancyfoot{}
     \fancyfoot[C]{\zihao{-5}\thepage}
-    \renewcommand{\headrulewidth}{0.4pt}
-    \renewcommand{\footrulewidth}{0pt}}
+    \renewcommand{\headrulewidth}{1.5pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
 \renewcommand\frontmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi
     \@mainmatterfalse
@@ -291,16 +297,16 @@ citecolor=blue]{hyperref}
     \pagestyle{hainnu@headings}}
 %目录深度
 \if@hainnuthesis@master
-\setcounter{tocdepth}{1} 
+\setcounter{tocdepth}{1}
 \else
-\setcounter{tocdepth}{2} 
+\setcounter{tocdepth}{2}
 \fi
 
 %定义关键字
 \RequirePackage{xparse}
 \RequirePackage{xkeyval, kvsetkeys}
 \NewDocumentCommand\hainnu@define@key{m}{%
-    \csdef{hainnu@set@#1}##1{\csdef{hainnu@#1}{##1}}	
+    \csdef{hainnu@set@#1}##1{\csdef{hainnu@#1}{##1}}
     \define@key{hainnu}{#1}{\csuse{hainnu@set@#1}{##1}}}
 \NewDocumentCommand{\hainnu@setkeys}{m}{\kvsetkeys{hainnu}{#1}}
 \let\hainnuset\hainnu@setkeys
@@ -335,7 +341,7 @@ citecolor=blue]{hyperref}
 \hainnu@define@key{eacadetitle}
 \hainnu@define@key{esupervisorB}
 \hainnu@define@key{eacadetitleB}
-\hainnu@define@key{ethesistype}   
+\hainnu@define@key{ethesistype}
 \hainnu@define@key{ecorresaddr}
 %% ==== Cover and titlepage
 \newcommand{\signatureimg}[1]{\includegraphics[height=0.6cm]{#1}}
@@ -374,7 +380,7 @@ citecolor=blue]{hyperref}
 		            	\makebox[7\ccwd][s]{二级学科} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@secndrydisc}\hfill\mbox{}} \\
 		            	\makebox[7\ccwd][s]{研究方向} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@researchdir}\hfill\mbox{}} \\
 		            	\makebox[7\ccwd][s]{申请学位类别} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@degreetype}\hfill\mbox{}} \\
-		            	\makebox[7\ccwd][s]{提交日期} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@submitdate}\hfill\mbox{}} 
+		            	\makebox[7\ccwd][s]{提交日期} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@submitdate}\hfill\mbox{}}
 		        	\end{tabular}
 	            \else
 	                \begin{tabular}{@{}p{7\ccwd}@{~}p{13\ccwd}@{}}
@@ -383,11 +389,11 @@ citecolor=blue]{hyperref}
 		            	\quad & \CJKunderline{\makebox[13\ccwd][c]{{\hainnu@supervisorB}\quad{\hainnu@acadetitleB}}\hfill\mbox{}} \\
 		            	\makebox[7\ccwd][s]{专业学位领域} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@profesfield}\hfill\mbox{}} \\
 	        		    \makebox[7\ccwd][s]{申请学位类别} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@degreetype}\hfill\mbox{}} \\
-		            	\makebox[7\ccwd][s]{提交日期} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@submitdate}\hfill\mbox{}} 
+		            	\makebox[7\ccwd][s]{提交日期} & \CJKunderline{\makebox[13\ccwd][c]{\hainnu@submitdate}\hfill\mbox{}}
 	            	\end{tabular}
 	            \fi
 	        }
-    	\else 
+    	\else
 			\includegraphics[height=6.0cm]{logoimage/logo_bachelor.png}\\
 			\zihao{1}{\songti{{\renewcommand{\CJKglue}{\hskip 12pt}\textbf{本科生毕业{\hainnu@type}}}}}\\
 			\blankline{-4}
@@ -446,7 +452,7 @@ citecolor=blue]{hyperref}
 	                Candidate: & {\hainnu@eauthor} \\
 	                Supervisor: & {\hainnu@eacadetitle}~~{\hainnu@esupervisor}
 	        \end{tabular*}
-	    \else 
+	    \else
 	    	\begin{tabular*}{6.5cm}{rp{8cm}}
 	    	Candidate: & {\hainnu@eauthor} \\
 	    	Supervisor: & {\hainnu@eacadetitle}~~{\hainnu@esupervisor}\\
@@ -528,7 +534,7 @@ citecolor=blue]{hyperref}
 	\begin{center}
 		\zihao{3}{\textbf{\hainnu@etitle}}\\
 		\blankline{-4}
-		\zihao{-4}{Author: \hainnu@eauthor \quad 
+		\zihao{-4}{Author: \hainnu@eauthor \quad
 			Supervisor: \hainnu@eacadetitle~\hainnu@esupervisor}\\
 		\zihao{-4}{(\hainnu@ecorresaddr)}
 	\end{center}
@@ -594,7 +600,7 @@ citecolor=blue]{hyperref}
 
 % ==== Preface
 \def\@introname{序\hspace{2\ccwd}言}
-\special@chapter% 
+\special@chapter%
 {introduction}%     <- command name
 [\zihao{3}\heiti]%  <- chapter titleformat(optional, default->\zihao{3}\heiti)
 {\@introname}%      <- chapter title
@@ -603,7 +609,7 @@ citecolor=blue]{hyperref}
 
 % ==== Conclusion
 \def\@conclusionname{结\hspace{2\ccwd}论}
-\special@chapter% 
+\special@chapter%
 {conclusion}%       <- command name
 [\zihao{3}\heiti]%  <- \heiti\zihao{3}
 {\@conclusionname}% <- chapter title
@@ -612,7 +618,7 @@ citecolor=blue]{hyperref}
 
 % ==== Reference
 \def\@referencename{参考文献}
-\special@chapter% 
+\special@chapter%
 {reference}%       <- command name
 [\zihao{3}\heiti]%  <- \heiti\zihao{3}
 {\@referencename}% <- chapter title
@@ -621,7 +627,7 @@ citecolor=blue]{hyperref}
 
 % ==== Appendix
 \def\@appendixname{附\hspace{2\ccwd}录}
-\special@chapter% 
+\special@chapter%
 {appendices}%       <- command name
 [\zihao{3}\heiti]%  <- \heiti\zihao{3}
 {\@appendixname}%   <- chapter title
@@ -644,7 +650,7 @@ citecolor=blue]{hyperref}
 
 % ==== Achievements
 \def\@achievename{在学期间学术成果情况}
-\special@chapter% 
+\special@chapter%
 {achievements}%     <- \achievements
 [\zihao{3}\heiti]%  <- \heiti\zihao{3}
 {\@achievename}%    <- title
@@ -653,7 +659,7 @@ citecolor=blue]{hyperref}
 
 % ==== Acknowledgement
 \def\@acknowledgement{致\hspace{2\ccwd}谢}
-\special@chapter% 
+\special@chapter%
 {acknowledgement}%     <- \acknowledgement
 [\zihao{3}\heiti]%     <- \heiti\zihao{3}
 {\@acknowledgement}%   <- title
@@ -662,7 +668,7 @@ citecolor=blue]{hyperref}
 
 % ==== Resolution
 \def\@resolution{答辩委员会委员签名的答辩决议书（归档论文）}
-\special@chapter*% 
+\special@chapter*%
 {resolution}%          <- \resolution
 [\zihao{4}\heiti]%     <- \heiti\zihao{4}
 {\@resolution}%        <- title
@@ -711,7 +717,7 @@ citecolor=blue]{hyperref}
 		{}
 		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
 		%[\nointerlineskip]
-		
+
 		\titlecontents{section}
 		[0pt]
 		{\zihao{-4}\hspace{2\ccwd}}
@@ -719,7 +725,7 @@ citecolor=blue]{hyperref}
 		{}
 		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
 		[\nointerlineskip]
-		
+
 		\titlecontents{subsection}
 		[0pt]
 		{\zihao{-4}\hspace{4\ccwd}}
@@ -734,7 +740,7 @@ citecolor=blue]{hyperref}
 		{\makebox[5.3em][s]{\thecontentslabel}}%调整目录章节编号大概为4个字符
 		{}
 		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
-		
+
 		\titlecontents{section}
 		[0pt]
 		{\zihao{-4}\hspace{2\ccwd}}
@@ -742,7 +748,7 @@ citecolor=blue]{hyperref}
 		{}
 		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
 		[\nointerlineskip]
-		
+
 		\titlecontents{subsection}
 		[0pt]
 		{\zihao{-4}\hspace{4\ccwd}}
@@ -760,7 +766,7 @@ citecolor=blue]{hyperref}
 		{}
 		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
 		%[\nointerlineskip]
-		
+
 		\titlecontents{section}
 		[0pt]
 		{\bfseries\zihao{4}\hspace{2\ccwd}}
@@ -768,7 +774,7 @@ citecolor=blue]{hyperref}
 		{}
 		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
 		[\nointerlineskip]
-		
+
 		\titlecontents{subsection}
 		[0pt]
 		{\bfseries\zihao{4}\hspace{2\ccwd}}
@@ -783,7 +789,7 @@ citecolor=blue]{hyperref}
 		{\makebox[5.3em][s]{\thecontentslabel}}%调整目录章节编号大概为4个字符
 		{}
 		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
-		
+
 		\titlecontents{section}
 		[0pt]
 		{\bfseries\zihao{4}\hspace{2\ccwd}}
@@ -791,7 +797,7 @@ citecolor=blue]{hyperref}
 		{}
 		{\titlerule*[1.5mm]{$\cdot$}\thecontentspage}
 		[\nointerlineskip]
-		
+
 		\titlecontents{subsection}
 		[0pt]
 		{\bfseries\zihao{4}\hspace{2\ccwd}}
@@ -807,5 +813,5 @@ citecolor=blue]{hyperref}
 \usepackage{chngcntr}
 \counterwithin*{equation}{section}
 \renewcommand{\theequation}{\arabic{chapter}.\arabic{section}.\arabic{equation}}
-%% 
+%%
 \AtBeginDocument{\pagestyle{empty}}

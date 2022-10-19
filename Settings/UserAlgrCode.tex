@@ -43,6 +43,17 @@
 \renewcommand{\algorithmicrepeat}{\textbf{do}}
 \renewcommand{\algorithmicuntil}{\textbf{while}}
 
+% 添加switch-case 语句
+\algnewcommand\algorithmicswitch{\textbf{switch}}
+\algnewcommand\algorithmiccase{\textbf{case}}
+\algnewcommand\algorithmicdefault{\textbf{default}}
+\algnewcommand\algorithmicassert{\texttt{assert}}
+\algnewcommand\Assert[1]{\State \algorithmicassert(#1)}%
+% New "environments"
+\algdef{SE}[SWITCH]{Switch}{EndSwitch}[1]{\algorithmicswitch\ #1\ \algorithmicdo}{\algorithmicend\ \algorithmicswitch}%
+\algdef{SE}[CASE]{Case}{EndCase}[1]{\algorithmiccase\ #1}{\algorithmicend\ \algorithmiccase}%
+\algdef{SE}[DEFAULT]{Default}{EndDefault}[1]{\algorithmicdefault\ #1}{\algorithmicend\ \algorithmicdefault}%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 伪代码分页
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,3 +80,12 @@
 		\kern2pt\hrule\relax% \@fs@post for \@fs@ruled 画线
 	\end{center}
 }
+
+
+\newcommand{\cpvar}[1]{\texttt{#1}}
+\newcommand{\cpfile}[1]{\texttt{#1}}
+\newcommand{\cpfun}[2]{\ProcName{#2}}
+\newcommand{\True}{\texttt{TRUE}}
+\newcommand{\False}{\texttt{FALSE}}
+\newcommand{\PtrToFun}[1]{\texttt{#1}}
+\newcommand{\ProcName}[1]{\textsc{#1}}
